@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,24 +30,32 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-[#121212]/95 backdrop-blur-sm shadow-lg' 
-          : 'bg-transparent'
+          ? 'py-3 bg-black/80 backdrop-blur-md border-b border-gold/10 shadow-[0_4px_30px_rgba(0,0,0,0.4)]' 
+          : 'py-5 bg-transparent'
       }`}
     >
-      <div className="container-custom py-4 flex items-center justify-between">
+      <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-2xl font-bold text-gold"
+          className="relative"
         >
-          وکیلیم
+          <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">وکیلیم</span>
+          {scrolled && (
+            <motion.span 
+              initial={{ width: 0 }} 
+              animate={{ width: '100%' }} 
+              transition={{ duration: 0.3 }}
+              className="absolute -bottom-1 right-0 h-px bg-gradient-to-r from-gold/30 via-gold to-gold/30"
+            />
+          )}
         </motion.div>
 
         {/* Desktop Navigation */}
@@ -59,77 +67,88 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-              className="text-white hover:text-gold relative group"
+              className="text-gray-300 hover:text-gold transition-all duration-300 relative group py-1 text-sm tracking-wide"
             >
               {link.name}
-              <span className="absolute -bottom-1 right-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute -bottom-px right-0 w-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-full transition-all duration-300 ease-out"></span>
             </motion.a>
           ))}
+        </div>
+
+        {/* CTA Button - only on desktop */}
+        <div className="hidden md:block">
+          <motion.button
+            whileHover={{ scale: 1.02, boxShadow: '0 0 15px rgba(212,175,55,0.3)' }}
+            whileTap={{ scale: 0.98 }}
+            className="text-sm px-5 py-2 rounded-full border border-gold/30 text-gold hover:border-gold/70 transition-all duration-300 bg-black/30 backdrop-blur-sm"
+          >
+            درخواست مشاوره
+          </motion.button>
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white hover:text-gold"
+            className="text-gold hover:text-gold/80 transition-colors"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            <span className="sr-only">Open main menu</span>
-            {/* Menu icon */}
-            <svg
-              className={`${mobileMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
+            <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
+            <div className="w-6 h-6 flex flex-col justify-center items-center relative">
+              <span 
+                className={`w-5 h-0.5 bg-gold absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45' : '-translate-y-1.5'}`}
               />
-            </svg>
-            {/* Close icon */}
-            <svg
-              className={`${mobileMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
+              <span 
+                className={`w-5 h-0.5 bg-gold absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
               />
-            </svg>
+              <span 
+                className={`w-5 h-0.5 bg-gold absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? '-rotate-45' : 'translate-y-1.5'}`}
+              />
+            </div>
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-[#121212]/95 backdrop-blur-sm"
-        >
-          <div className="container-custom py-4 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block text-white hover:text-gold py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-black/95 backdrop-blur-lg border-b border-gold/10"
+          >
+            <div className="container-custom py-4">
+              <div className="flex flex-col space-y-4">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    className="text-gray-300 hover:text-gold py-2 text-center transition-colors border-b border-gray-800 last:border-0"
+                    onClick={() => setMobileMenuOpen(false)}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {link.name}
+                  </motion.a>
+                ))}
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                  className="pt-2 pb-3"
+                >
+                  <button className="w-full py-2.5 rounded-full border border-gold/30 text-gold hover:border-gold/70 transition-all duration-300 bg-black/30">
+                    درخواست مشاوره
+                  </button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
