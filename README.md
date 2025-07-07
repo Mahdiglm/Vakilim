@@ -1,90 +1,69 @@
-# وکیلیم (Vakilim) - Legal Tech Landing Page
+# وکیلیم | Vakilim
 
-A modern, responsive landing page for a legal tech startup with a beautiful dark theme and gold accents.
+<div dir="rtl">
 
-## Features
+## 🏛️ وکیلیم - پلتفرم حقوقی آنلاین
 
-- Built with React and Vite
-- RTL layout for Persian language
-- Fully responsive design
-- Dark theme with luxury gold accents
-- Smooth animations with Framer Motion
-- Tailwind CSS for styling
+### معرفی
+وکیلیم یک پلتفرم حقوقی آنلاین است که امکان دسترسی به خدمات حقوقی و مشاوره با وکلای مجرب را به صورت آنلاین فراهم می‌کند.
 
-## Technologies Used
+### ویژگی‌ها
+- ✅ مشاوره حقوقی آنلاین
+- ✅ دسترسی به وکلای مجرب
+- ✅ وکالت در دعاوی مختلف
+- ✅ تنظیم قراردادها و اسناد حقوقی
 
-- React 18
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Vazir Persian font
+### تکنولوژی‌ها
+- **فرانت‌اند**: React.js, Vite
+- **استایلینگ**: Tailwind CSS
+- **انیمیشن**: Framer Motion
+- **فونت**: Vazirmatn
+- **زبان**: JavaScript (ES6+)
 
-## Getting Started
+### نصب و راه‌اندازی
 
-### Prerequisites
+#### پیش‌نیازها
+- Node.js نسخه 16 یا بالاتر
+- npm یا yarn
 
-- Node.js (version 14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
+#### دستورات نصب
 ```bash
-git clone https://github.com/yourusername/vakilim.git
-cd vakilim
-```
-
-2. Install dependencies
-```bash
+# نصب وابستگی‌ها
 npm install
-```
 
-3. Run the development server
-```bash
+# اجرای پروژه در حالت توسعه
 npm run dev
-```
 
-4. Open your browser and navigate to `http://localhost:5173`
-
-## Building for Production
-
-To create a production build:
-
-```bash
+# ساخت نسخه نهایی
 npm run build
 ```
 
-The built files will be in the `dist` directory and can be deployed to any static hosting service.
-
-## Project Structure
-
+### ساختار پروژه
 ```
-vakilim/
-├── public/           # Static assets
-├── src/
-│   ├── assets/       # Images and other assets
-│   ├── components/   # React components
-│   │   ├── Navbar.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Features.jsx
-│   │   ├── Testimonials.jsx
-│   │   └── Footer.jsx
-│   ├── App.jsx       # Main application component
-│   ├── main.jsx      # Application entry point
-│   └── index.css     # Global styles and Tailwind directives
-├── index.html        # HTML template
-├── tailwind.config.js # Tailwind configuration
-├── postcss.config.js # PostCSS configuration
-├── vite.config.js    # Vite configuration
-└── package.json      # Project dependencies and scripts
+src/
+├── components/      # کامپوننت‌های React
+│   ├── Navbar.jsx   # منوی ناوبری
+│   ├── Hero.jsx     # بخش اصلی صفحه
+│   ├── Features.jsx # ویژگی‌های سرویس
+│   └── Footer.jsx   # پاورقی
+├── App.jsx          # کامپوننت اصلی
+└── main.jsx         # نقطه ورود برنامه
 ```
 
-## Customization
+### طراحی
+- تم تیره با جزئیات طلایی
+- طراحی مینیمال و لوکس
+- پشتیبانی کامل از RTL
+- انیمیشن‌های نرم و روان
+- رابط کاربری واکنش‌گرا
 
-- Colors and theme: Edit `tailwind.config.js` to change the color scheme
-- Fonts: The Vazir font is already included, but you can change it in `index.css`
-- Content: Update the text and images in the component files
+</div>
+
+---
+
+<div dir="ltr">
 
 ## License
+© 2023 Vakilim. All Rights Reserved.
 
-This project is licensed under the MIT License
+</div>

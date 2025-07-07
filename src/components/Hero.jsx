@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
       {/* Premium gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a0a] to-[#121212] z-0">
         <div className="absolute inset-0 opacity-[0.03]" 
