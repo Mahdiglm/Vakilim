@@ -1,27 +1,61 @@
-@import 'vazirmatn/Vazirmatn-font-face.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  direction: rtl;
-  font-family: 'Vazirmatn', sans-serif;
-  background-color: #121212;
-  color: #F5F5F5;
-  scroll-behavior: smooth;
+@layer base {
+  :root {
+    --color-gold: 212 175 55; /* #D4AF37 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: black;
+  }
+  
+  body {
+    font-family: 'Vazirmatn', sans-serif;
+    @apply antialiased text-gray-100 bg-black;
+  }
 }
 
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-4;
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: rgb(var(--color-gold) / 1);
   }
   
-  .btn {
-    @apply px-6 py-3 rounded-lg transition-all duration-300 font-medium;
+  .bg-gold {
+    background-color: rgb(var(--color-gold) / 1);
   }
   
-  .btn-primary {
-    @apply bg-yellow-600 text-white hover:shadow-md hover:bg-opacity-90;
+  .border-gold {
+    border-color: rgb(var(--color-gold) / 1);
   }
+}
+
+/* RTL Support */
+[dir="rtl"] .rtl\:mr-0 {
+  margin-right: 0;
+}
+
+[dir="rtl"] .rtl\:ml-2 {
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .rtl\:ml-4 {
+  margin-left: 1rem;
+}
+
+[dir="rtl"] .rtl\:space-x-reverse {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .rtl\:group-hover\:-translate-x-1:hover {
+  --tw-translate-x: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
