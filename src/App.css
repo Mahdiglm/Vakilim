@@ -43,6 +43,11 @@ a, button {
   transition: all 0.3s ease;
 }
 
+/* Remove focus outline */
+button:focus, a:focus, input:focus {
+  outline: none;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
@@ -79,11 +84,44 @@ a, button {
   100% { background-position: 200% 0; }
 }
 
-/* Scroll reveal animation */
+/* Enhanced section transitions */
+section {
+  position: relative;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* Scroll reveal animation with enhanced easing */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-on-scroll.revealed {
@@ -99,12 +137,6 @@ a, button {
   color: transparent;
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
-}
-
-/* Custom focus styles */
-button:focus, a:focus, input:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5);
 }
 
 /* Enhance images */
@@ -133,9 +165,4 @@ img {
 
 .btn-gold:hover::after {
   opacity: 1;
-}
-
-/* Enhance sections */
-section {
-  position: relative;
 } 
