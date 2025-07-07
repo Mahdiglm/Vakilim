@@ -1,144 +1,155 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Testimonials = () => {
   const testimonials = [
     {
-      id: 'testimonial1',
-      name: 'علی محمدی',
+      id: 1,
+      name: 'محمد رضایی',
       role: 'کارآفرین',
-      quote: 'مشاوره با وکیلیم باعث شد قرارداد کاری من از هرگونه مشکل حقوقی در امان بماند. سرعت و دقت وکلای وکیلیم واقعا ستودنی است.',
+      quote: 'مشاوره‌های حقوقی وکیلیم به من کمک کرد تا کسب و کارم را با اطمینان گسترش دهم. وکلای حرفه‌ای و باتجربه‌شان در زمینه حقوق تجارت، راهنمایی‌های ارزشمندی به من ارائه دادند.',
+      image: 'https://randomuser.me/api/portraits/men/32.jpg',
     },
     {
-      id: 'testimonial2',
-      name: 'سارا رضایی',
-      role: 'صاحب کسب‌و‌کار',
-      quote: 'با کمک وکیلیم توانستم حق خود را در یک پرونده پیچیده بگیرم. هزینه منصفانه و مشاوره دقیق آنها بسیار کمک‌کننده بود.',
+      id: 2,
+      name: 'سارا احمدی',
+      role: 'مدیر شرکت',
+      quote: 'من برای یک پرونده پیچیده از وکیلیم کمک گرفتم و نتیجه فراتر از انتظارم بود. تیم حقوقی آنها با تخصص و تعهد بالا، مرا در تمام مراحل همراهی کردند.',
+      image: 'https://randomuser.me/api/portraits/women/44.jpg',
     },
     {
-      id: 'testimonial3',
-      name: 'حسین کریمی',
-      role: 'پزشک',
-      quote: 'در دعوی حقوقی که داشتم، وکیلیم با حرفه‌ای‌گری تمام مشکل من را حل کرد. قطعا برای مشکلات حقوقی آینده هم سراغ آنها خواهم رفت.',
+      id: 3,
+      name: 'علی محمدی',
+      role: 'مهندس نرم‌افزار',
+      quote: 'وکیلیم با ارائه خدمات حقوقی آنلاین، زمان و هزینه‌های من را به شکل قابل توجهی کاهش داد. دسترسی به وکیل اختصاصی در هر زمان، واقعاً برای من ارزشمند بود.',
+      image: 'https://randomuser.me/api/portraits/men/22.jpg',
     },
   ];
 
   // Animation variants
   const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
+    hidden: {},
+    visible: {
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
-  const itemVariants = {
+  const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
-  // Responsive design - for mobile screens, show one testimonial at a time with navigation
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Navigation for mobile testimonials
-  const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1], 
+      } 
+    },
   };
 
   return (
-    <section className="py-24 bg-[#121212] relative overflow-hidden">
-      {/* Background decorative element */}
-      <div 
-        className="absolute top-0 left-0 w-full h-full opacity-5 z-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #D4AF37 2px, transparent 2px)',
-          backgroundSize: '50px 50px'
-        }}
-      />
+    <section className="py-20 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080808] to-black z-0"></div>
       
-      <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">نظرات موکلین ما</h2>
-          <div className="w-24 h-1 bg-gold mx-auto"></div>
-        </motion.div>
+      {/* Decorative gradient */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
 
-        {/* Desktop view - all testimonials in a grid */}
+      <div className="container-custom relative z-10">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-4"
+          >
+            <span className="inline-block px-3 py-1 text-xs bg-gold/10 text-gold rounded-full tracking-wider">نظرات موکلین</span>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-100 to-gold"
+          >
+            تجربه موکلین ما
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-2xl mx-auto"
+          >
+            <p className="text-gray-400 text-lg">
+              با وکیلیم، همیشه حق با شماست
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Testimonials grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="hidden md:grid grid-cols-3 gap-6"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
         >
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              variants={itemVariants}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-black/10 backdrop-blur-sm border border-gold/5 rounded-lg p-8 relative group hover:border-gold/20 transition-all duration-300"
+              variants={cardVariants}
+              className="p-0.5 h-full"
+              style={{ 
+                transformOrigin: index === 1 ? 'center' : index === 0 ? 'right' : 'left',
+              }}
             >
-              {/* Quote icon */}
-              <div className="absolute -top-4 -right-2 text-gold opacity-20 text-5xl font-serif">❝</div>
-              <p className="text-gray-300 mb-8 relative z-10">{testimonial.quote}</p>
-              <div className="mt-auto">
-                <p className="font-bold text-white">{testimonial.name}</p>
-                <p className="text-gold text-sm">{testimonial.role}</p>
+              <div className="group relative h-full">
+                {/* Animated gradient border */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-gold/30 via-gold/20 to-transparent rounded-2xl blur-[2px] opacity-60 group-hover:opacity-90 transition-opacity duration-500"
+                ></div>
+                
+                {/* Card content */}
+                <div className="relative h-full bg-gradient-to-b from-black/80 to-black/95 backdrop-blur-xl rounded-2xl p-8 border border-gold/5 overflow-hidden flex flex-col">
+                  {/* Quote icon */}
+                  <svg className="w-8 h-8 text-gold/30 mb-6" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                  </svg>
+                  
+                  {/* Testimonial quote */}
+                  <blockquote className="flex-1">
+                    <p className="text-gray-400 leading-relaxed mb-6">
+                      {testimonial.quote}
+                    </p>
+                  </blockquote>
+                  
+                  {/* Person info */}
+                  <div className="flex items-center">
+                    <div className="relative w-12 h-12 mr-4 rtl:mr-0 rtl:ml-4">
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gold to-yellow-300 blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="relative rounded-full w-12 h-12 object-cover border border-gold/20"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-white">{testimonial.name}</p>
+                      <p className="text-gold text-sm">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 left-4 w-1 h-1 rounded-full bg-gold"></div>
+                  <div className="absolute top-4 right-4 w-1 h-1 rounded-full bg-gold"></div>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Mobile view - single testimonial with navigation */}
-        <div className="md:hidden">
-          <motion.div
-            key={testimonials[activeIndex].id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/10 backdrop-blur-sm border border-gold/5 rounded-lg p-8 relative"
-          >
-            <div className="absolute -top-4 -right-2 text-gold opacity-20 text-5xl font-serif">❝</div>
-            <p className="text-gray-300 mb-8">{testimonials[activeIndex].quote}</p>
-            <div>
-              <p className="font-bold text-white">{testimonials[activeIndex].name}</p>
-              <p className="text-gold text-sm">{testimonials[activeIndex].role}</p>
-            </div>
-          </motion.div>
-
-          {/* Navigation buttons */}
-          <div className="flex justify-center mt-8 space-x-4">
-            <button 
-              onClick={prevTestimonial}
-              className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button 
-              onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold hover:bg-gold/10 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
