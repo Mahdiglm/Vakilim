@@ -22,4 +22,4 @@ npm run dev
 
 </div>
 
-© 2023 Vakilim
+© 2025 Vakilim
