@@ -62,10 +62,18 @@ const Features = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-[#080808] z-0"></div>
       
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-64 -right-64 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px]"></div>
-        <div className="absolute -bottom-32 -left-32 w-[300px] h-[300px] rounded-full bg-gold/5 blur-[80px]"></div>
+      {/* Enhanced decorative elements for better transition */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Top circles */}
+        <div className="absolute -top-64 -right-64 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
+        <div className="absolute -top-32 -left-32 w-[300px] h-[300px] rounded-full bg-gold/5 blur-[80px] opacity-30"></div>
+        
+        {/* Middle circles */}
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/4 blur-[120px] opacity-30"></div>
+        
+        {/* Bottom circles that connect to Testimonials section */}
+        <div className="absolute -bottom-[200px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold/3 blur-[150px] opacity-30"></div>
+        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
       </div>
 
       <div className="container-custom relative z-10">
@@ -152,6 +160,84 @@ const Features = () => {
             </motion.div>
           ))}
         </motion.div>
+        
+        {/* Enhanced floating elements that match Testimonials section */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            className="absolute w-16 h-16 rounded-full bg-gold/5"
+            style={{ left: '10%', top: '20%' }}
+            animate={{ 
+              y: [0, -15, 0],
+              opacity: [0.5, 0.8, 0.5]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-8 h-8 rounded-full bg-gold/10"
+            style={{ right: '15%', top: '30%' }}
+            animate={{ 
+              y: [0, -20, 0],
+              opacity: [0.6, 0.9, 0.6]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-12 h-12 rounded-full bg-gold/10"
+            style={{ left: '20%', bottom: '15%' }}
+            animate={{ 
+              y: [0, -10, 0],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-6 h-6 rounded-full bg-gold/5"
+            style={{ right: '25%', bottom: '10%' }}
+            animate={{ 
+              y: [0, -15, 0],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.5
+            }}
+          />
+          
+          {/* Additional floating element at the bottom to connect with Testimonials */}
+          <motion.div 
+            className="absolute w-20 h-20 rounded-full bg-gold/8"
+            style={{ left: '50%', bottom: '-10%', transform: 'translateX(-50%)' }}
+            animate={{ 
+              y: [0, -15, 0],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+          />
+        </div>
       </div>
     </section>
   );

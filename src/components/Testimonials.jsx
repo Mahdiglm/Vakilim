@@ -51,6 +51,19 @@ const Testimonials = () => {
     <section id="testimonials" className="py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#080808] to-black z-0"></div>
+      
+      {/* Circular background elements for seamless transition from Features */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Top circle that extends from Features section */}
+        <div className="absolute -top-[300px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold/3 blur-[150px] opacity-30"></div>
+        
+        {/* Additional circles for visual interest */}
+        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
+        <div className="absolute top-1/4 -left-64 w-[300px] h-[300px] rounded-full bg-gold/5 blur-[80px] opacity-30"></div>
+        
+        {/* Bottom circles that connect to the next section */}
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-gold/4 blur-[120px] opacity-30"></div>
+      </div>
 
       <div className="container-custom relative z-10">
         {/* Section header */}
@@ -147,6 +160,53 @@ const Testimonials = () => {
             </motion.div>
           ))}
         </motion.div>
+        
+        {/* Animated floating circles similar to Features section */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            className="absolute w-10 h-10 rounded-full bg-gold/5"
+            style={{ right: '15%', top: '15%' }}
+            animate={{ 
+              y: [0, -15, 0],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-6 h-6 rounded-full bg-gold/10"
+            style={{ left: '10%', top: '40%' }}
+            animate={{ 
+              y: [0, -10, 0],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-8 h-8 rounded-full bg-gold/8"
+            style={{ right: '25%', bottom: '30%' }}
+            animate={{ 
+              y: [0, -12, 0],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+        </div>
       </div>
     </section>
   );
