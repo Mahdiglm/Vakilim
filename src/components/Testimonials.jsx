@@ -51,9 +51,6 @@ const Testimonials = () => {
     <section id="testimonials" className="py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#080808] to-black z-0"></div>
-      
-      {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
 
       <div className="container-custom relative z-10">
         {/* Section header */}

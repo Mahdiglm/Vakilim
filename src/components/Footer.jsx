@@ -98,9 +98,6 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-black overflow-hidden" id="contact">
-      {/* Gradient top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
-
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gold/3 blur-[120px] opacity-50"></div>
