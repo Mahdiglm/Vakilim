@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({ activeSection = 'hero' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -22,10 +22,10 @@ const Navbar = () => {
 
   // Navigation links
   const navLinks = [
-    { name: 'خانه', href: '#' },
-    { name: 'خدمات', href: '#services' },
-    { name: 'وکلا', href: '#lawyers' },
-    { name: 'تماس با ما', href: '#contact' },
+    { name: 'خانه', href: '#', section: 'hero' },
+    { name: 'خدمات', href: '#services', section: 'services' },
+    { name: 'نظرات', href: '#testimonials', section: 'testimonials' },
+    { name: 'تماس با ما', href: '#contact', section: 'contact' },
   ];
 
   return (
@@ -67,10 +67,20 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-              className="text-gray-300 hover:text-gold transition-all duration-300 relative group py-1 text-sm tracking-wide"
+              className={`text-sm tracking-wide py-1 relative group transition-all duration-300 ${
+                activeSection === link.section 
+                  ? 'text-gold' 
+                  : 'text-gray-300 hover:text-gold'
+              }`}
             >
               {link.name}
-              <span className="absolute -bottom-px right-0 w-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent group-hover:w-full transition-all duration-300 ease-out"></span>
+              <span 
+                className={`absolute -bottom-px right-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-300 ease-out ${
+                  activeSection === link.section 
+                    ? 'w-full' 
+                    : 'w-0 group-hover:w-full'
+                }`}
+              ></span>
             </motion.a>
           ))}
         </div>
@@ -125,7 +135,11 @@ const Navbar = () => {
                   <motion.a
                     key={link.name}
                     href={link.href}
-                    className="text-gray-300 hover:text-gold py-2 text-center transition-colors border-b border-gray-800 last:border-0"
+                    className={`py-2 text-center transition-colors border-b border-gray-800 last:border-0 ${
+                      activeSection === link.section 
+                        ? 'text-gold' 
+                        : 'text-gray-300 hover:text-gold'
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
