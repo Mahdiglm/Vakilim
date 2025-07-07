@@ -4,44 +4,49 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+import './App.css';
 
 function App() {
-  // Set document title and language
+  // Set smooth scroll behavior
   useEffect(() => {
-    document.documentElement.lang = 'fa';
-    document.title = 'وکیلیم | مشاوره حقوقی آنلاین';
-    
-    // Add smooth scroll effect
-    const handleAnchorClick = (e) => {
-      const href = e.currentTarget.getAttribute('href');
-      if (href && href.startsWith('#') && href.length > 1) {
+    // Add smooth scroll behavior for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = href.substring(1);
+        
+        const targetId = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
+        
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
+            top: targetElement.offsetTop - 80, // Offset for navbar
             behavior: 'smooth'
           });
         }
-      }
-    };
-
-    // Add event listener to all anchor tags
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
+      });
     });
 
-    // Cleanup
-    return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
+    // Add scroll reveal effects
+    const handleScroll = () => {
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+          element.classList.add('revealed');
+        }
       });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on initial load
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#121212]">
+    <div className="min-h-screen bg-black text-white font-vazirmatn" dir="rtl">
       <Navbar />
       <main>
         <Hero />
