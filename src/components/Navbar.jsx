@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = ({ activeSection = 'hero' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [themeIndex, setThemeIndex] = useState(0); // Default to first theme
   const [showThemeOptions, setShowThemeOptions] = useState(false);
+  const { currentTheme, themeIndex, setThemeIndex, themes } = useTheme();
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -22,23 +23,7 @@ const Navbar = ({ activeSection = 'hero' }) => {
     };
   }, [scrolled]);
 
-  // Define multiple theme options
-  const themes = [
-    { name: 'کلاسیک', primary: '#D4AF37', secondary: '#000000' },
-    { name: 'پلاتینیوم', primary: '#E5E4E2', secondary: '#222222' },
-    { name: 'مرجانی', primary: '#FF7F50', secondary: '#0C3547' },
-    { name: 'آبی', primary: '#0096FF', secondary: '#001E3C' },
-    { name: 'زمرد', primary: '#50C878', secondary: '#004B23' },
-    { name: 'یاقوتی', primary: '#E0115F', secondary: '#1A0110' },
-    { name: 'ارغوانی', primary: '#800080', secondary: '#180028' },
-    { name: 'برنزی', primary: '#CD7F32', secondary: '#2C1503' },
-    { name: 'شبرنگ', primary: '#7DF9FF', secondary: '#111827' },
-    { name: 'بنفش', primary: '#9B59B6', secondary: '#1C0C29' },
-    { name: 'فیروزه‌ای', primary: '#30D5C8', secondary: '#00332B' },
-    { name: 'نارنجی', primary: '#FF8C00', secondary: '#331C00' },
-  ];
-
-  // Toggle theme function
+  // Toggle theme panel function
   const toggleThemePanel = () => {
     setShowThemeOptions(!showThemeOptions);
   };
@@ -47,7 +32,6 @@ const Navbar = ({ activeSection = 'hero' }) => {
   const setTheme = (index) => {
     setThemeIndex(index);
     setShowThemeOptions(false);
-    // In a real implementation, this would update global theme state
   };
 
   // Navigation links
@@ -58,19 +42,19 @@ const Navbar = ({ activeSection = 'hero' }) => {
     { name: 'تماس با ما', href: '#contact', section: 'contact' },
   ];
 
-  // Get current theme
-  const currentTheme = themes[themeIndex];
-
   return (
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'py-3 bg-black/80 backdrop-blur-md border-b border-gold/10 shadow-[0_4px_30px_rgba(0,0,0,0.4)]' 
-          : 'py-5 bg-transparent'
-      }`}
+      className="fixed top-0 right-0 left-0 z-50 transition-all duration-500"
+      style={{
+        padding: scrolled ? '0.75rem 0' : '1.25rem 0',
+        background: scrolled ? `${currentTheme.secondary}CC` : 'transparent',
+        backdropFilter: scrolled ? 'blur(8px)' : 'none',
+        borderBottom: scrolled ? `1px solid ${currentTheme.primary}20` : 'none',
+        boxShadow: scrolled ? `0 4px 30px rgba(0, 0, 0, 0.4)` : 'none'
+      }}
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
@@ -80,13 +64,21 @@ const Navbar = ({ activeSection = 'hero' }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative"
         >
-          <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">وکیلیم</span>
+          <span 
+            className="text-2xl font-bold text-transparent bg-clip-text"
+            style={{ backgroundImage: currentTheme.gradient }}
+          >
+            وکیلیم
+          </span>
           {scrolled && (
             <motion.span 
               initial={{ width: 0 }} 
               animate={{ width: '100%' }} 
               transition={{ duration: 0.3 }}
-              className="absolute -bottom-1 right-0 h-px bg-gradient-to-r from-gold/30 via-gold to-gold/30"
+              className="absolute -bottom-1 right-0 h-px"
+              style={{ 
+                background: `linear-gradient(to right, ${currentTheme.primary}30, ${currentTheme.primary}, ${currentTheme.primary}30)` 
+              }}
             />
           )}
         </motion.div>
@@ -101,19 +93,20 @@ const Navbar = ({ activeSection = 'hero' }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-                className={`text-sm tracking-wide py-1 relative group transition-all duration-300 ${
-                  activeSection === link.section 
-                    ? 'text-gold' 
-                    : 'text-gray-300 hover:text-gold'
-                }`}
+                className="text-sm tracking-wide py-1 relative group transition-all duration-300"
+                style={{ 
+                  color: activeSection === link.section 
+                    ? currentTheme.primary 
+                    : currentTheme.textSecondary
+                }}
               >
                 {link.name}
                 <span 
-                  className={`absolute -bottom-px right-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-300 ease-out ${
-                    activeSection === link.section 
-                      ? 'w-full' 
-                      : 'w-0 group-hover:w-full'
-                  }`}
+                  className="absolute -bottom-px right-0 h-[1px] transition-all duration-300 ease-out"
+                  style={{ 
+                    width: activeSection === link.section ? '100%' : '0',
+                    background: `linear-gradient(to right, transparent, ${currentTheme.primary}, transparent)`,
+                  }}
                 ></span>
               </motion.a>
             ))}
@@ -127,9 +120,12 @@ const Navbar = ({ activeSection = 'hero' }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             onClick={toggleThemePanel}
-            className="relative p-2 rounded-full bg-black/30 border border-gold/30 backdrop-blur-sm group"
+            className="relative p-2 rounded-full backdrop-blur-sm group"
+            style={{ 
+              background: `${currentTheme.secondary}4D`,
+              border: `1px solid ${currentTheme.primary}4D`
+            }}
             aria-label="Toggle theme"
-            style={{ borderColor: `${currentTheme.primary}30` }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
               className="w-5 h-5 transition-colors"
@@ -137,7 +133,10 @@ const Navbar = ({ activeSection = 'hero' }) => {
             >
               <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
             </svg>
-            <span className="absolute inset-0 rounded-full bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span 
+              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: `${currentTheme.primary}1A` }}
+            ></span>
           </motion.button>
           
           {/* Theme Selection Panel */}
@@ -148,13 +147,23 @@ const Navbar = ({ activeSection = 'hero' }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute left-0 mt-2 bg-black/90 border border-gold/20 backdrop-blur-md rounded-lg shadow-xl py-2 z-50 w-48"
-                style={{ maxHeight: '300px', overflowY: 'auto' }}
+                className="absolute left-0 mt-2 rounded-lg shadow-xl py-2 z-50 w-48"
+                style={{ 
+                  maxHeight: '300px',
+                  overflowY: 'auto',
+                  background: `${currentTheme.secondary}E6`,
+                  backdropFilter: 'blur(8px)',
+                  border: `1px solid ${currentTheme.primary}33`
+                }}
               >
                 {themes.map((theme, idx) => (
                   <div
                     key={theme.name}
-                    className="px-3 py-2 flex items-center justify-between cursor-pointer hover:bg-black/40 transition-colors"
+                    className="px-3 py-2 flex items-center justify-between cursor-pointer transition-colors"
+                    style={{ 
+                      background: themeIndex === idx ? `${theme.primary}1A` : 'transparent',
+                      ':hover': { background: `${theme.primary}0D` } 
+                    }}
                     onClick={() => setTheme(idx)}
                   >
                     <span 
@@ -181,23 +190,32 @@ const Navbar = ({ activeSection = 'hero' }) => {
         <div className="md:hidden ml-4 rtl:ml-0 rtl:mr-4">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-gold hover:text-gold/80 transition-colors"
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="hover:opacity-80 transition-colors"
             style={{ color: currentTheme.primary }}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
             <div className="w-6 h-6 flex flex-col justify-center items-center relative">
               <span 
-                className={`w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'rotate-45' : '-translate-y-1.5'}`}
-                style={{ backgroundColor: currentTheme.primary }}
+                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                style={{ 
+                  backgroundColor: currentTheme.primary,
+                  transform: mobileMenuOpen ? 'rotate(45deg)' : 'translateY(-6px)'
+                }}
               />
               <span 
-                className={`w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-                style={{ backgroundColor: currentTheme.primary }}
+                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                style={{ 
+                  backgroundColor: currentTheme.primary,
+                  opacity: mobileMenuOpen ? 0 : 1
+                }}
               />
               <span 
-                className={`w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out ${mobileMenuOpen ? '-rotate-45' : 'translate-y-1.5'}`}
-                style={{ backgroundColor: currentTheme.primary }}
+                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                style={{ 
+                  backgroundColor: currentTheme.primary,
+                  transform: mobileMenuOpen ? 'rotate(-45deg)' : 'translateY(6px)'
+                }}
               />
             </div>
           </button>
@@ -224,17 +242,32 @@ const Navbar = ({ activeSection = 'hero' }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 1, x: '100%' }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 bottom-0 right-0 w-64 bg-black/90 backdrop-blur-md border-l border-gold/10 shadow-[-5px_0_30px_rgba(0,0,0,0.5)] z-50"
-              style={{ borderColor: `${currentTheme.primary}10` }}
+              className="fixed top-0 bottom-0 right-0 w-64 backdrop-blur-md z-50"
+              style={{ 
+                background: `${currentTheme.secondary}E6`,
+                borderLeft: `1px solid ${currentTheme.primary}1A`,
+                boxShadow: `-5px 0 30px rgba(0, 0, 0, 0.5)`
+              }}
             >
               <div className="flex flex-col h-full">
                 {/* Header with close button */}
-                <div className="flex items-center justify-between p-4 border-b border-gold/10" style={{ borderColor: `${currentTheme.primary}10` }}>
-                  <span className="text-lg font-medium" style={{ color: currentTheme.primary }}>منو</span>
+                <div 
+                  className="flex items-center justify-between p-4 border-b"
+                  style={{ borderColor: `${currentTheme.primary}1A` }}
+                >
+                  <span 
+                    className="text-lg font-medium"
+                    style={{ color: currentTheme.primary }}
+                  >
+                    منو
+                  </span>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-1.5 rounded-full bg-black/40 border border-gold/20"
-                    style={{ borderColor: `${currentTheme.primary}20` }}
+                    className="p-1.5 rounded-full"
+                    style={{ 
+                      background: `${currentTheme.secondary}66`,
+                      border: `1px solid ${currentTheme.primary}33`
+                    }}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
                       className="w-4 h-4" style={{ color: currentTheme.primary }}>
@@ -255,14 +288,14 @@ const Navbar = ({ activeSection = 'hero' }) => {
                       >
                         <a
                           href={link.href}
-                          className={`block py-2.5 px-3 rounded-lg transition-all duration-200 ${
-                            activeSection === link.section 
-                              ? 'bg-gold/10 text-gold' 
-                              : 'text-gray-300 hover:bg-black/40 hover:text-gold'
-                          }`}
+                          className="block py-2.5 px-3 rounded-lg transition-all duration-200"
                           style={{ 
-                            backgroundColor: activeSection === link.section ? `${currentTheme.primary}10` : '',
-                            color: activeSection === link.section ? currentTheme.primary : '#d1d5db'
+                            backgroundColor: activeSection === link.section 
+                              ? `${currentTheme.primary}1A` 
+                              : 'transparent',
+                            color: activeSection === link.section 
+                              ? currentTheme.primary 
+                              : currentTheme.textSecondary
                           }}
                           onClick={() => setMobileMenuOpen(false)}
                         >
