@@ -8,32 +8,18 @@
     <title>وکیلیم | مشاوره حقوقی آنلاین</title>
     <!-- Vazir Font -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <!-- GitHub Pages SPA fix -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      (function() {
-        // Retrieve route from query params
-        const searchParams = new URLSearchParams(window.location.search);
-        const redirectRoute = searchParams.get("currentRoute");
-        
-        // Only if a route is specified and we need to redirect
-        if (redirectRoute) {
-          // Replace the current URL with the intended route
-          history.replaceState(null, null, `/${redirectRoute}`);
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: '#D4AF37',
+            }
+          }
         }
-        
-        // Handle redirects from src/main.jsx
-        const redirectFrom = searchParams.get("redirectFrom");
-        if (redirectFrom && (redirectFrom.includes('/src/main.js') || redirectFrom.includes('/src/main.jsx'))) {
-          console.log('Redirected from source file path');
-        }
-        
-        // Handle direct access to source files
-        if (window.location.pathname.indexOf('/src/') !== -1) {
-          window.location.href = window.location.origin + 
-            (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/') + 
-            '?redirectFrom=' + encodeURIComponent(window.location.pathname);
-        }
-      })();
+      }
     </script>
     <style>
       html, body {

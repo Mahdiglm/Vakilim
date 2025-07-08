@@ -68,19 +68,19 @@ const Navbar = ({ activeSection = 'hero' }) => {
             className="text-2xl font-bold text-transparent bg-clip-text relative z-10"
             style={{ 
               backgroundImage: currentTheme.badgeGradient,
-              textShadow: `0 1px 4px ${currentTheme.primary}20`,
+              textShadow: `0 2px 10px ${currentTheme.primary}40`,
               letterSpacing: '0.5px'
             }}
           >
             وکیلیم
           </span>
           <motion.span 
-            className="absolute -inset-1 rounded-lg blur-sm opacity-20 bg-gradient-to-r"
+            className="absolute -inset-1 rounded-lg blur-sm opacity-30 bg-gradient-to-r"
             style={{ 
               backgroundImage: currentTheme.badgeGradient,
-              filter: `blur(5px)`
+              filter: `blur(8px)`
             }}
-            animate={{ opacity: [0.1, 0.2, 0.1] }}
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
             transition={{ 
               duration: 3,
               repeat: Infinity,
