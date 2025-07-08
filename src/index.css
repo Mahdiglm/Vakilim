@@ -3,24 +3,74 @@
 @tailwind utilities;
 
 @layer base {
-:root {
+  :root {
+    /* Default theme colors (Classic Gold) */
     --color-gold: 212 175 55; /* #D4AF37 */
+    --primary: #D4AF37;
+    --secondary: #000000;
+    --gradient: linear-gradient(90deg, #D4AF37, #FFE062, #D4AF37);
+    --accent: #FFD700;
+    --muted: rgba(212, 175, 55, 0.2);
+    --border: rgba(212, 175, 55, 0.3);
+    --shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+    --hover-glow: 0 0 15px rgba(212, 175, 55, 0.5);
+    --surface-dark: #0A0A0A;
+    --surface-light: #1A1A1A;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: black;
-}
-
-body {
+    background-color: var(--secondary);
+  }
+  
+  body {
     font-family: 'Vazirmatn', sans-serif;
-    @apply antialiased text-gray-100 bg-black;
-}
+    @apply antialiased text-gray-100;
+    background-color: var(--secondary);
+  }
+  
+  /* Enhanced scrollbar styling with theme colors */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
 }
 
 @layer components {
   .container-custom {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Themed utility classes */
+  .theme-gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .theme-border {
+    border-color: var(--border);
+  }
+  
+  .theme-shadow {
+    box-shadow: var(--shadow);
+  }
+  
+  .theme-glow-hover:hover {
+    box-shadow: var(--hover-glow);
   }
 }
 
@@ -29,13 +79,45 @@ body {
     color: rgb(var(--color-gold) / 1);
   }
   
+  .text-theme {
+    color: var(--primary);
+  }
+  
+  .text-theme-muted {
+    color: var(--muted);
+  }
+  
   .bg-gold {
     background-color: rgb(var(--color-gold) / 1);
-}
+  }
+  
+  .bg-theme {
+    background-color: var(--primary);
+  }
+  
+  .bg-theme-muted {
+    background-color: var(--muted);
+  }
+  
+  .bg-theme-surface {
+    background-color: var(--surface-light);
+  }
+  
+  .bg-theme-surface-dark {
+    background-color: var(--surface-dark);
+  }
   
   .border-gold {
     border-color: rgb(var(--color-gold) / 1);
-}
+  }
+  
+  .border-theme {
+    border-color: var(--primary);
+  }
+  
+  .border-theme-muted {
+    border-color: var(--muted);
+  }
 }
 
 /* RTL Support */
