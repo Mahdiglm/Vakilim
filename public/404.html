@@ -2,27 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Redirecting...</title>
+  <title>وکیلیم | مشاوره حقوقی آنلاین</title>
   <script>
     // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    // This script takes the current URL and converts the path to a 
-    // correctly formatted GitHub Pages URL
-    
-    var pathSegmentsToKeep = 1;
-
-    var l = window.location;
-    l.replace(
-      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash
-    );
+    // https://github.com/pjnalls/spa-404-fix
+    (function() {
+      // This creates a redirect to the root of the site with the current path as a query parameter
+      window.location.href = `/${
+        window.location.pathname
+          ? `?currentRoute=${window.location.pathname.slice(1)}`
+          : ""
+      }`;
+    })();
   </script>
 </head>
 <body>
-  Redirecting to the homepage...
+  <p>Redirecting...</p>
 </body>
 </html> 
