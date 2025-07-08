@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
-import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
 function App() {
@@ -71,17 +70,15 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen text-white font-vazirmatn" dir="rtl">
-        <Navbar activeSection={activeSection} />
-        <main>
-          <Hero />
-          <Features />
-          <Testimonials />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen bg-black text-white font-vazirmatn" dir="rtl">
+      <Navbar activeSection={activeSection} />
+      <main>
+        <Hero />
+        <Features />
+        <Testimonials />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

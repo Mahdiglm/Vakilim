@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 
 const Features = () => {
-  const { currentTheme } = useTheme();
-  
   const features = [
     {
       id: 1,
@@ -63,38 +60,20 @@ const Features = () => {
   return (
     <section id="services" className="py-20 relative overflow-hidden">
       {/* Background */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{ background: `linear-gradient(to bottom, ${currentTheme.secondary}, ${currentTheme.secondary})` }}
-      ></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-[#080808] z-0"></div>
       
       {/* Enhanced decorative elements for better transition */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Top circles */}
-        <div 
-          className="absolute -top-64 -right-64 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
-          style={{ background: `${currentTheme.primary}0D` }}
-        ></div>
-        <div 
-          className="absolute -top-32 -left-32 w-[300px] h-[300px] rounded-full blur-[80px] opacity-30"
-          style={{ background: `${currentTheme.primary}0D` }}
-        ></div>
+        <div className="absolute -top-64 -right-64 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
+        <div className="absolute -top-32 -left-32 w-[300px] h-[300px] rounded-full bg-gold/5 blur-[80px] opacity-30"></div>
         
         {/* Middle circles */}
-        <div 
-          className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
-          style={{ background: `${currentTheme.primary}0A` }}
-        ></div>
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold/4 blur-[120px] opacity-30"></div>
         
         {/* Bottom circles that connect to Testimonials section */}
-        <div 
-          className="absolute -bottom-[200px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full blur-[150px] opacity-30"
-          style={{ background: `${currentTheme.primary}08` }}
-        ></div>
-        <div 
-          className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
-          style={{ background: `${currentTheme.primary}0D` }}
-        ></div>
+        <div className="absolute -bottom-[200px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold/3 blur-[150px] opacity-30"></div>
+        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
       </div>
 
       <div className="container-custom relative z-10">
@@ -107,20 +86,14 @@ const Features = () => {
             transition={{ duration: 0.6 }}
             className="mb-4"
           >
-            <span 
-              className="inline-block px-3 py-1 text-xs rounded-full tracking-wider"
-              style={{ 
-                background: `${currentTheme.primary}1A`,
-                color: currentTheme.primary
-              }}
-            >خدمات حقوقی</span>
+            <span className="inline-block px-3 py-1 text-xs bg-gold/10 text-gold rounded-full tracking-wider">خدمات حقوقی</span>
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold mb-4 gradient-text"
+            className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-100 to-gold"
           >
             خدمات ویژه وکیلیم
           </motion.h2>
@@ -131,7 +104,7 @@ const Features = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <p style={{ color: currentTheme.textSecondary }} className="text-lg">
+            <p className="text-gray-400 text-lg">
               با وکیلیم، خدمات حقوقی به شیوه نوین ارائه می‌شود
             </p>
           </motion.div>
@@ -153,60 +126,26 @@ const Features = () => {
             >
               <div className="relative group">
                 {/* Gradient border effect */}
-                <div 
-                  className="absolute inset-0 rounded-2xl blur-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ 
-                    background: `linear-gradient(to bottom right, ${currentTheme.primary}4D, ${currentTheme.primary}33, transparent)`
-                  }}
-                ></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/30 via-gold/20 to-transparent rounded-2xl blur-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div 
-                  className="relative h-full backdrop-blur-xl rounded-2xl p-8 overflow-hidden flex flex-col"
-                  style={{ 
-                    background: `${currentTheme.secondary}CC`,
-                    border: `1px solid ${currentTheme.primary}0D`
-                  }}
-                >
+                <div className="relative h-full bg-black/80 backdrop-blur-xl rounded-2xl p-8 border border-gold/5 overflow-hidden flex flex-col">
                   {/* Icon container */}
-                  <div 
-                    className="relative z-10 mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full"
-                    style={{ 
-                      background: `linear-gradient(to bottom right, ${currentTheme.secondary}, #111)`,
-                      border: `1px solid ${currentTheme.primary}33`
-                    }}
-                  >
-                    <span style={{ color: currentTheme.primary }}>{feature.icon}</span>
-                    <div 
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"
-                      style={{ 
-                        background: `linear-gradient(to bottom right, ${currentTheme.primary}33, transparent)` 
-                      }}
-                    ></div>
+                  <div className="relative z-10 mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-black to-gray-900 border border-gold/20">
+                    <span className="text-gold">{feature.icon}</span>
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"></div>
                   </div>
                   
                   {/* Content */}
-                  <h3 
-                    className="text-xl font-bold mb-3 transition-colors duration-300"
-                    style={{ 
-                      color: currentTheme.textPrimary,
-                      ':hover': { color: currentTheme.primary }
-                    }}
-                  >
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-gold transition-colors duration-300">
                     {feature.title}
                   </h3>
-                  <p 
-                    className="mb-6 leading-relaxed"
-                    style={{ color: currentTheme.textSecondary }}
-                  >
+                  <p className="text-gray-400 mb-6 leading-relaxed">
                     {feature.description}
                   </p>
                   
                   {/* Animated arrow */}
                   <div className="mt-auto">
-                    <span 
-                      className="inline-flex items-center text-sm font-medium group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300"
-                      style={{ color: currentTheme.primary }}
-                    >
+                    <span className="inline-flex items-center text-gold text-sm font-medium group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
                       مشاهده جزئیات
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2 transform rotate-180">
                         <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
@@ -215,10 +154,7 @@ const Features = () => {
                   </div>
                   
                   {/* Decorative dot */}
-                  <div 
-                    className="absolute top-4 right-4 w-1 h-1 rounded-full"
-                    style={{ background: currentTheme.primary }}
-                  ></div>
+                  <div className="absolute top-4 right-4 w-1 h-1 rounded-full bg-gold"></div>
                 </div>
               </div>
             </motion.div>
@@ -228,12 +164,8 @@ const Features = () => {
         {/* Enhanced floating elements that match Testimonials section */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.div 
-            className="absolute w-16 h-16 rounded-full"
-            style={{ 
-              left: '10%', 
-              top: '20%',
-              background: `${currentTheme.primary}0D`
-            }}
+            className="absolute w-16 h-16 rounded-full bg-gold/5"
+            style={{ left: '10%', top: '20%' }}
             animate={{ 
               y: [0, -15, 0],
               opacity: [0.5, 0.8, 0.5]
@@ -246,12 +178,8 @@ const Features = () => {
           />
           
           <motion.div 
-            className="absolute w-8 h-8 rounded-full"
-            style={{ 
-              right: '15%', 
-              top: '30%',
-              background: `${currentTheme.primary}1A`
-            }}
+            className="absolute w-8 h-8 rounded-full bg-gold/10"
+            style={{ right: '15%', top: '30%' }}
             animate={{ 
               y: [0, -20, 0],
               opacity: [0.6, 0.9, 0.6]
@@ -265,12 +193,8 @@ const Features = () => {
           />
           
           <motion.div 
-            className="absolute w-12 h-12 rounded-full"
-            style={{ 
-              left: '20%', 
-              bottom: '15%',
-              background: `${currentTheme.primary}1A`
-            }}
+            className="absolute w-12 h-12 rounded-full bg-gold/10"
+            style={{ left: '20%', bottom: '15%' }}
             animate={{ 
               y: [0, -10, 0],
               opacity: [0.4, 0.7, 0.4]
@@ -284,12 +208,8 @@ const Features = () => {
           />
           
           <motion.div 
-            className="absolute w-6 h-6 rounded-full"
-            style={{ 
-              right: '25%', 
-              bottom: '10%',
-              background: `${currentTheme.primary}0D`
-            }}
+            className="absolute w-6 h-6 rounded-full bg-gold/5"
+            style={{ right: '25%', bottom: '10%' }}
             animate={{ 
               y: [0, -15, 0],
               opacity: [0.3, 0.6, 0.3]
@@ -304,13 +224,8 @@ const Features = () => {
           
           {/* Additional floating element at the bottom to connect with Testimonials */}
           <motion.div 
-            className="absolute w-20 h-20 rounded-full"
-            style={{ 
-              left: '50%', 
-              bottom: '-10%', 
-              transform: 'translateX(-50%)',
-              background: `${currentTheme.primary}14`
-            }}
+            className="absolute w-20 h-20 rounded-full bg-gold/8"
+            style={{ left: '50%', bottom: '-10%', transform: 'translateX(-50%)' }}
             animate={{ 
               y: [0, -15, 0],
               opacity: [0.4, 0.7, 0.4]

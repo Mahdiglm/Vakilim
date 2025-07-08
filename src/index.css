@@ -3,87 +3,39 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Default theme variables - will be overridden by ThemeContext */
-    --color-primary: #D4AF37;
-    --color-secondary: #000000;
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #E0E0E0;
-    --color-accent: #FFC700;
-    --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #FFC700 100%);
-    --gradient-text: linear-gradient(to right, #D4AF37, #FFEB8A, #D4AF37);
-    --gradient-background: linear-gradient(to bottom, #000000, #121212);
-    --shadow-primary: 0 4px 30px rgba(212, 175, 55, 0.3);
+:root {
+    --color-gold: 212 175 55; /* #D4AF37 */
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-secondary);
-  }
-  
-  body {
+    background-color: black;
+}
+
+body {
     font-family: 'Vazirmatn', sans-serif;
-    @apply antialiased;
-    color: var(--color-text-primary);
-    background: var(--gradient-background);
-    transition: background 0.5s ease-in-out;
-  }
-
-  /* Remove outline on focused elements */
-  button:focus, a:focus, input:focus {
-    outline: none;
-  }
-
-  /* Add smooth transitions to interactive elements */
-  a, button {
-    transition: all 0.3s ease;
-  }
+    @apply antialiased text-gray-100 bg-black;
+}
 }
 
 @layer components {
   .container-custom {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+}
 
-  /* Theme-based utility classes */
-  .text-theme-primary {
-    color: var(--color-primary);
+@layer utilities {
+  .text-gold {
+    color: rgb(var(--color-gold) / 1);
   }
-
-  .text-theme-secondary {
-    color: var(--color-secondary);
-  }
-
-  .bg-theme-primary {
-    background-color: var(--color-primary);
-  }
-
-  .bg-theme-secondary {
-    background-color: var(--color-secondary);
-  }
-
-  .border-theme-primary {
-    border-color: var(--color-primary);
-  }
-
-  .gradient-text {
-    background-image: var(--gradient-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shine 2s linear infinite;
-    background-size: 200% auto;
-  }
-
-  .bg-gradient-theme {
-    background-image: var(--gradient-primary);
-  }
-
-  @keyframes shine {
-    to {
-      background-position: 200% center;
-    }
-  }
+  
+  .bg-gold {
+    background-color: rgb(var(--color-gold) / 1);
+}
+  
+  .border-gold {
+    border-color: rgb(var(--color-gold) / 1);
+}
 }
 
 /* RTL Support */
@@ -106,22 +58,4 @@
 [dir="rtl"] .rtl\:group-hover\:-translate-x-1:hover {
   --tw-translate-x: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
 }

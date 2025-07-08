@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 
 const Testimonials = () => {
-  const { currentTheme } = useTheme();
-  
   const testimonials = [
     {
       id: 1,
@@ -53,34 +50,19 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 relative overflow-hidden">
       {/* Background */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{ background: `linear-gradient(to bottom, ${currentTheme.secondary}, ${currentTheme.secondary})` }}
-      ></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080808] to-black z-0"></div>
       
       {/* Circular background elements for seamless transition from Features */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Top circle that extends from Features section */}
-        <div 
-          className="absolute -top-[300px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full blur-[150px] opacity-30"
-          style={{ background: `${currentTheme.primary}08` }}
-        ></div>
+        <div className="absolute -top-[300px] left-1/2 transform -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold/3 blur-[150px] opacity-30"></div>
         
         {/* Additional circles for visual interest */}
-        <div 
-          className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40"
-          style={{ background: `${currentTheme.primary}0D` }}
-        ></div>
-        <div 
-          className="absolute top-1/4 -left-64 w-[300px] h-[300px] rounded-full blur-[80px] opacity-30"
-          style={{ background: `${currentTheme.primary}0D` }}
-        ></div>
+        <div className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full bg-gold/5 blur-[100px] opacity-40"></div>
+        <div className="absolute top-1/4 -left-64 w-[300px] h-[300px] rounded-full bg-gold/5 blur-[80px] opacity-30"></div>
         
         {/* Bottom circles that connect to the next section */}
-        <div 
-          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-30"
-          style={{ background: `${currentTheme.primary}0A` }}
-        ></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-gold/4 blur-[120px] opacity-30"></div>
       </div>
 
       <div className="container-custom relative z-10">
@@ -93,20 +75,14 @@ const Testimonials = () => {
             transition={{ duration: 0.6 }}
             className="mb-4"
           >
-            <span 
-              className="inline-block px-3 py-1 text-xs rounded-full tracking-wider"
-              style={{ 
-                background: `${currentTheme.primary}1A`,
-                color: currentTheme.primary
-              }}
-            >نظرات موکلین</span>
+            <span className="inline-block px-3 py-1 text-xs bg-gold/10 text-gold rounded-full tracking-wider">نظرات موکلین</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold mb-4 gradient-text"
+            className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-100 to-gold"
           >
             تجربه موکلین ما
           </motion.h2>
@@ -117,10 +93,7 @@ const Testimonials = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <p 
-              className="text-lg"
-              style={{ color: currentTheme.textSecondary }}
-            >
+            <p className="text-gray-400 text-lg">
               با وکیلیم، همیشه حق با شماست
             </p>
           </motion.div>
@@ -146,37 +119,19 @@ const Testimonials = () => {
               <div className="group relative h-full">
                 {/* Animated gradient border */}
                 <div 
-                  className="absolute inset-0 rounded-2xl blur-[2px] opacity-60 group-hover:opacity-90 transition-opacity duration-500"
-                  style={{ 
-                    background: `linear-gradient(to bottom right, ${currentTheme.primary}4D, ${currentTheme.primary}33, transparent)` 
-                  }}
+                  className="absolute inset-0 bg-gradient-to-br from-gold/30 via-gold/20 to-transparent rounded-2xl blur-[2px] opacity-60 group-hover:opacity-90 transition-opacity duration-500"
                 ></div>
                 
                 {/* Card content */}
-                <div 
-                  className="relative h-full backdrop-blur-xl rounded-2xl p-8 overflow-hidden flex flex-col"
-                  style={{ 
-                    background: `linear-gradient(to bottom, ${currentTheme.secondary}CC, ${currentTheme.secondary}F2)`,
-                    border: `1px solid ${currentTheme.primary}0D`
-                  }}
-                >
+                <div className="relative h-full bg-gradient-to-b from-black/80 to-black/95 backdrop-blur-xl rounded-2xl p-8 border border-gold/5 overflow-hidden flex flex-col">
                   {/* Quote icon */}
-                  <svg 
-                    className="w-8 h-8 mb-6" 
-                    fill="currentColor" 
-                    viewBox="0 0 32 32" 
-                    aria-hidden="true"
-                    style={{ color: `${currentTheme.primary}4D` }}
-                  >
+                  <svg className="w-8 h-8 text-gold/30 mb-6" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                   </svg>
                   
                   {/* Testimonial quote */}
                   <blockquote className="flex-1">
-                    <p 
-                      className="leading-relaxed mb-6"
-                      style={{ color: currentTheme.textSecondary }}
-                    >
+                    <p className="text-gray-400 leading-relaxed mb-6">
                       {testimonial.quote}
                     </p>
                   </blockquote>
@@ -184,38 +139,22 @@ const Testimonials = () => {
                   {/* Person info */}
                   <div className="flex items-center">
                     <div className="relative w-12 h-12 mr-4 rtl:mr-0 rtl:ml-4">
-                      <div 
-                        className="absolute inset-0 rounded-full blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"
-                        style={{ background: currentTheme.gradient }}
-                      ></div>
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gold to-yellow-300 blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-300"></div>
                       <img 
                         src={testimonial.image} 
                         alt={testimonial.name}
-                        className="relative rounded-full w-12 h-12 object-cover"
-                        style={{ border: `1px solid ${currentTheme.primary}33` }}
+                        className="relative rounded-full w-12 h-12 object-cover border border-gold/20"
                       />
                     </div>
                     <div>
-                      <p 
-                        className="font-medium"
-                        style={{ color: currentTheme.textPrimary }}
-                      >{testimonial.name}</p>
-                      <p 
-                        className="text-sm"
-                        style={{ color: currentTheme.primary }}
-                      >{testimonial.role}</p>
+                      <p className="font-medium text-white">{testimonial.name}</p>
+                      <p className="text-gold text-sm">{testimonial.role}</p>
                     </div>
                   </div>
                   
                   {/* Decorative elements */}
-                  <div 
-                    className="absolute top-4 left-4 w-1 h-1 rounded-full"
-                    style={{ background: currentTheme.primary }}
-                  ></div>
-                  <div 
-                    className="absolute top-4 right-4 w-1 h-1 rounded-full"
-                    style={{ background: currentTheme.primary }}
-                  ></div>
+                  <div className="absolute top-4 left-4 w-1 h-1 rounded-full bg-gold"></div>
+                  <div className="absolute top-4 right-4 w-1 h-1 rounded-full bg-gold"></div>
                 </div>
               </div>
             </motion.div>
@@ -225,12 +164,8 @@ const Testimonials = () => {
         {/* Animated floating circles similar to Features section */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.div 
-            className="absolute w-10 h-10 rounded-full"
-            style={{ 
-              right: '15%', 
-              top: '15%',
-              background: `${currentTheme.primary}0D`
-            }}
+            className="absolute w-10 h-10 rounded-full bg-gold/5"
+            style={{ right: '15%', top: '15%' }}
             animate={{ 
               y: [0, -15, 0],
               opacity: [0.3, 0.6, 0.3]
@@ -243,12 +178,8 @@ const Testimonials = () => {
           />
           
           <motion.div 
-            className="absolute w-6 h-6 rounded-full"
-            style={{ 
-              left: '10%', 
-              top: '40%',
-              background: `${currentTheme.primary}1A`
-            }}
+            className="absolute w-6 h-6 rounded-full bg-gold/10"
+            style={{ left: '10%', top: '40%' }}
             animate={{ 
               y: [0, -10, 0],
               opacity: [0.4, 0.7, 0.4]
@@ -262,12 +193,8 @@ const Testimonials = () => {
           />
           
           <motion.div 
-            className="absolute w-8 h-8 rounded-full"
-            style={{ 
-              right: '25%', 
-              bottom: '30%',
-              background: `${currentTheme.primary}14`
-            }}
+            className="absolute w-8 h-8 rounded-full bg-gold/8"
+            style={{ right: '25%', bottom: '30%' }}
             animate={{ 
               y: [0, -12, 0],
               opacity: [0.3, 0.5, 0.3]
