@@ -1,2 +1,2 @@
-// Redirect to main app
-window.location.href = "/Vakilim/";
+// Redirect to root
+window.location.href = window.location.origin + (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/');

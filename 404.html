@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Vakilim/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="وکیلیم - سامانه مشاوره حقوقی آنلاین با وکلای خبره" />
     <title>وکیلیم | مشاوره حقوقی آنلاین</title>
@@ -19,6 +19,19 @@
         if (redirectRoute) {
           // Replace the current URL with the intended route
           history.replaceState(null, null, `/${redirectRoute}`);
+        }
+        
+        // Handle redirects from src/main.jsx
+        const redirectFrom = searchParams.get("redirectFrom");
+        if (redirectFrom && redirectFrom.includes('/src/main.jsx')) {
+          console.log('Redirected from source file path');
+        }
+        
+        // Handle direct access to source files
+        if (window.location.pathname.indexOf('/src/') !== -1) {
+          window.location.href = window.location.origin + 
+            (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/') + 
+            '?redirectFrom=' + encodeURIComponent(window.location.pathname);
         }
       })();
     </script>
@@ -50,8 +63,8 @@
         }
       }
     </style>
-    <script type="module" crossorigin src="/Vakilim/assets/main-CykNOIOQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/Vakilim/assets/main-4_4lqMDB.css">
+    <script type="module" crossorigin src="./assets/index-CKhIlKux.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-4_4lqMDB.css">
   </head>
   <body>
     <div id="root"></div>
