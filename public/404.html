@@ -4,26 +4,26 @@
   <meta charset="utf-8">
   <title>وکیلیم | مشاوره حقوقی آنلاین</title>
   <script>
-    // Single Page App 404 fix for GitHub Pages
-    // Based on https://github.com/pjnalls/spa-404-fix
+    // SPA 404 fix for GitHub Pages
     (function(){
-      // Get the current path excluding the base path
+      // Get the current path
       var path = window.location.pathname;
       var basePath = '/Vakilim/';
       
-      // Determine if we're in the Vakilim repo context
+      // Check if we're in the repo context
       var isInRepo = path.indexOf(basePath) === 0;
-      var pathToUse = isInRepo ? path.replace(basePath, '') : path;
       
-      // Special handling for src/main.jsx
-      if (pathToUse.indexOf('src/main.jsx') !== -1) {
-        window.location.href = window.location.origin + 
-          (isInRepo ? basePath : '/');
+      // Handle the path
+      if (path.indexOf('/src/main.jsx') !== -1 || path.indexOf('/src/main.js') !== -1) {
+        // Special handling for source files
+        window.location.href = window.location.origin + basePath;
       } else {
-        // Regular route handling
-        window.location.href = window.location.origin + 
-          (isInRepo ? basePath : '/') + 
-          '?currentRoute=' + encodeURIComponent(pathToUse);
+        // For all other paths, redirect to the SPA with the path as a query param
+        var cleanPath = isInRepo ? path.replace(basePath, '') : path;
+        if (cleanPath.startsWith('/')) cleanPath = cleanPath.substring(1);
+        
+        window.location.href = window.location.origin + basePath + 
+          (cleanPath ? '?currentRoute=' + encodeURIComponent(cleanPath) : '');
       }
     })();
   </script>

@@ -13,10 +13,10 @@ function spaRedirectPlugin() {
       // Create .nojekyll to prevent GitHub Pages from using Jekyll processing
       await fs.writeFile(path.join(distDir, '.nojekyll'), '');
       
-      // Copy index.html to 404.html (will be overwritten by our custom 404.html)
+      // Copy index.html to 404.html for SPA routing
       await fs.copyFile(path.join(distDir, 'index.html'), path.join(distDir, '404.html'));
       
-      // Ensure src directory exists
+      // Create a special HTML file for handling direct access to main.jsx
       const srcDir = path.join(distDir, 'src');
       try {
         await fs.mkdir(srcDir, { recursive: true });
@@ -24,11 +24,24 @@ function spaRedirectPlugin() {
         // Directory may already exist
       }
       
-      // Create redirect file for src/main.jsx
-      const mainJsxRedirect = `// Redirect to root
-window.location.href = window.location.origin + (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/');`;
+      // Create an HTML file that will redirect when accessed directly
+      const redirectHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    window.location.href = window.location.origin + 
+      (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/');
+  </script>
+</head>
+<body>
+  <p>Redirecting to the main application...</p>
+</body>
+</html>`;
       
-      await fs.writeFile(path.join(srcDir, 'main.jsx'), mainJsxRedirect);
+      await fs.writeFile(path.join(srcDir, 'main.jsx'), redirectHtml);
       
       console.log('✓ SPA redirects for GitHub Pages created successfully');
     }
@@ -38,7 +51,7 @@ window.location.href = window.location.origin + (window.location.pathname.includ
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), spaRedirectPlugin()],
-  base: './', // Use relative paths
+  base: '/Vakilim/', // Use the correct base path for GitHub Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
