@@ -1,34 +1,46 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
-import fs from 'fs'
+import fs from 'fs/promises'
+import path from 'path'
+
+// Custom plugin to handle SPA redirects for GitHub Pages
+function spaRedirectPlugin() {
+  return {
+    name: 'spa-redirect-plugin',
+    async closeBundle() {
+      const distDir = path.resolve('dist');
+      
+      // Create .nojekyll to prevent GitHub Pages from using Jekyll processing
+      await fs.writeFile(path.join(distDir, '.nojekyll'), '');
+      
+      // Copy index.html to 404.html (will be overwritten by our custom 404.html)
+      await fs.copyFile(path.join(distDir, 'index.html'), path.join(distDir, '404.html'));
+      
+      // Ensure src directory exists
+      const srcDir = path.join(distDir, 'src');
+      try {
+        await fs.mkdir(srcDir, { recursive: true });
+      } catch (e) {
+        // Directory may already exist
+      }
+      
+      // Create redirect file for src/main.jsx
+      const mainJsxRedirect = `// Redirect to root
+window.location.href = window.location.origin + (window.location.pathname.includes('/Vakilim/') ? '/Vakilim/' : '/');`;
+      
+      await fs.writeFile(path.join(srcDir, 'main.jsx'), mainJsxRedirect);
+      
+      console.log('✓ SPA redirects for GitHub Pages created successfully');
+    }
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),
-    // Custom plugin to copy index.html to 404.html after build
-    {
-      name: 'copy-404-file',
-      closeBundle: async () => {
-        // Copy index.html to 404.html for GitHub Pages SPA support
-        await fs.promises.copyFile('./dist/index.html', './dist/404.html');
-        // Create .nojekyll file to prevent GitHub Pages from using Jekyll
-        await fs.promises.writeFile('./dist/.nojekyll', '');
-        // Create a redirect at /src/main.jsx to avoid 404
-        if (!fs.existsSync('./dist/src')) {
-          await fs.promises.mkdir('./dist/src', { recursive: true });
-        }
-        await fs.promises.writeFile('./dist/src/main.jsx', 
-          `// Redirect to main app\nwindow.location.href = "/Vakilim/";`);
-      }
-    }
-  ],
-  base: '/Vakilim/',
+  plugins: [react(), spaRedirectPlugin()],
+  base: './', // Use relative paths
   build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-      },
-    },
-  },
+    outDir: 'dist',
+    assetsDir: 'assets',
+  }
 })
