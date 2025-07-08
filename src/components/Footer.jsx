@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
+  const { currentTheme } = useTheme();
+  
   // Animation variants
   const containerVariants = {
     hidden: {},
@@ -97,11 +100,21 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-black overflow-hidden" id="contact">
+    <footer 
+      className="relative overflow-hidden" 
+      id="contact"
+      style={{ background: currentTheme.secondary }}
+    >
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gold/3 blur-[120px] opacity-50"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gold/3 blur-[100px] opacity-40"></div>
+        <div 
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-50"
+          style={{ background: `${currentTheme.primary}08` }}
+        ></div>
+        <div 
+          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] opacity-40"
+          style={{ background: `${currentTheme.primary}08` }}
+        ></div>
       </div>
 
       <div className="container-custom relative z-10 pt-16 pb-8">
@@ -110,15 +123,19 @@ const Footer = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="pb-8 mb-8 border-b border-gold/10"
+          className="pb-8 mb-8"
+          style={{ borderBottom: `1px solid ${currentTheme.primary}1A` }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8">
             {/* Logo and description */}
             <motion.div variants={itemVariants} className="col-span-2">
               <div className="flex items-center mb-4">
-                <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">وکیلیم</span>
+                <span className="text-2xl font-bold gradient-text">وکیلیم</span>
               </div>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p 
+                className="mb-6 leading-relaxed"
+                style={{ color: currentTheme.textSecondary }}
+              >
                 وکیلیم مجموعه‌ای از وکلا و مشاوران حقوقی برجسته است که با استفاده از فناوری‌های نوین، خدمات حقوقی را به شیوه‌ای جدید ارائه می‌دهد.
               </p>
               <div className="flex space-x-4 rtl:space-x-reverse">
@@ -126,7 +143,11 @@ const Footer = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-gold/70 hover:text-gold transition-colors duration-300"
+                    className="transition-colors duration-300"
+                    style={{ 
+                      color: `${currentTheme.primary}B3`,
+                      ':hover': { color: currentTheme.primary }
+                    }}
                     aria-label={item.name}
                   >
                     {item.icon}
@@ -138,14 +159,27 @@ const Footer = () => {
             {/* Footer link columns */}
             {footerLinks.map((column) => (
               <motion.div key={column.title} variants={itemVariants} className="flex flex-col">
-                <h3 className="text-white font-semibold mb-4 relative inline-block">
+                <h3 
+                  className="font-semibold mb-4 relative inline-block"
+                  style={{ color: currentTheme.textPrimary }}
+                >
                   {column.title}
-                  <span className="absolute -bottom-1 right-0 w-12 h-px bg-gradient-to-r from-gold/50 to-transparent"></span>
+                  <span 
+                    className="absolute -bottom-1 right-0 w-12 h-px"
+                    style={{ background: `linear-gradient(to right, ${currentTheme.primary}80, transparent)` }}
+                  ></span>
                 </h3>
                 <ul className="space-y-3">
                   {column.links.map((link) => (
                     <li key={link.name}>
-                      <a href={link.href} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">
+                      <a 
+                        href={link.href} 
+                        className="text-sm transition-colors duration-300"
+                        style={{ 
+                          color: currentTheme.textSecondary,
+                          ':hover': { color: currentTheme.primary }
+                        }}
+                      >
                         {link.name}
                       </a>
                     </li>
@@ -169,9 +203,20 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="آدرس ایمیل خود را وارد کنید"
-                className="w-full bg-black/50 border border-gold/20 text-white rounded-full px-5 py-3 outline-none focus:border-gold/50 transition-colors duration-300"
+                className="w-full rounded-full px-5 py-3 outline-none transition-colors duration-300"
+                style={{ 
+                  background: `${currentTheme.secondary}80`, 
+                  border: `1px solid ${currentTheme.primary}33`,
+                  color: currentTheme.textPrimary
+                }}
               />
-              <button className="absolute left-1 top-1 bottom-1 bg-gradient-to-r from-gold/80 to-yellow-500/80 hover:from-gold hover:to-yellow-500 text-black font-medium rounded-full px-5 transition-all duration-300">
+              <button 
+                className="absolute left-1 top-1 bottom-1 font-medium rounded-full px-5 transition-all duration-300"
+                style={{ 
+                  background: currentTheme.gradient,
+                  color: currentTheme.secondary
+                }}
+              >
                 اشتراک
               </button>
             </div>
@@ -182,7 +227,8 @@ const Footer = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-gray-500 text-sm text-center md:text-start"
+            className="text-sm text-center md:text-start"
+            style={{ color: `${currentTheme.textSecondary}80` }}
           >
             <p>© {new Date().getFullYear()} وکیلیم. تمامی حقوق محفوظ است.</p>
           </motion.div>
