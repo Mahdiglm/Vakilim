@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = ({ activeSection = 'hero' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(true); // Default to dark theme
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -19,6 +20,13 @@ const Navbar = ({ activeSection = 'hero' }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+    // In a real implementation, this would update global theme state
+    // For development purposes, just toggle the state
+  };
 
   // Navigation links
   const navLinks = [
@@ -58,46 +66,58 @@ const Navbar = ({ activeSection = 'hero' }) => {
           )}
         </motion.div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.href}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
-              className={`text-sm tracking-wide py-1 relative group transition-all duration-300 ${
-                activeSection === link.section 
-                  ? 'text-gold' 
-                  : 'text-gray-300 hover:text-gold'
-              }`}
-            >
-              {link.name}
-              <span 
-                className={`absolute -bottom-px right-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-300 ease-out ${
+        {/* Desktop Navigation - Centered */}
+        <div className="hidden md:flex items-center justify-center flex-1">
+          <div className="flex items-center space-x-8 rtl:space-x-reverse">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                className={`text-sm tracking-wide py-1 relative group transition-all duration-300 ${
                   activeSection === link.section 
-                    ? 'w-full' 
-                    : 'w-0 group-hover:w-full'
+                    ? 'text-gold' 
+                    : 'text-gray-300 hover:text-gold'
                 }`}
-              ></span>
-            </motion.a>
-          ))}
+              >
+                {link.name}
+                <span 
+                  className={`absolute -bottom-px right-0 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-300 ease-out ${
+                    activeSection === link.section 
+                      ? 'w-full' 
+                      : 'w-0 group-hover:w-full'
+                  }`}
+                ></span>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
-        {/* CTA Button - only on desktop */}
-        <div className="hidden md:block">
-          <motion.button
-            whileHover={{ scale: 1.02, boxShadow: '0 0 15px rgba(212,175,55,0.3)' }}
-            whileTap={{ scale: 0.98 }}
-            className="text-sm px-5 py-2 rounded-full border border-gold/30 text-gold hover:border-gold/70 transition-all duration-300 bg-black/30 backdrop-blur-sm"
-          >
-            درخواست مشاوره
-          </motion.button>
-        </div>
+        {/* Theme Toggle Button */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          onClick={toggleTheme}
+          className="relative p-2 rounded-full bg-black/30 border border-gold/30 backdrop-blur-sm group"
+          aria-label="Toggle theme"
+        >
+          {darkTheme ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold group-hover:text-yellow-300 transition-colors">
+              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold group-hover:text-yellow-300 transition-colors">
+              <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" />
+            </svg>
+          )}
+          <span className="absolute inset-0 rounded-full bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </motion.button>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="md:hidden ml-4 rtl:ml-0 rtl:mr-4">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-gold hover:text-gold/80 transition-colors"
@@ -119,48 +139,90 @@ const Navbar = ({ activeSection = 'hero' }) => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Minimal Side Menu for Mobile */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/95 backdrop-blur-lg border-b border-gold/10"
-          >
-            <div className="container-custom py-4">
-              <div className="flex flex-col space-y-4">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    className={`py-2 text-center transition-colors border-b border-gray-800 last:border-0 ${
-                      activeSection === link.section 
-                        ? 'text-gold' 
-                        : 'text-gray-300 hover:text-gold'
-                    }`}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            
+            {/* Side Menu */}
+            <motion.div
+              initial={{ opacity: 1, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 1, x: '100%' }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 bottom-0 right-0 w-64 bg-black/90 backdrop-blur-md border-l border-gold/10 shadow-[-5px_0_30px_rgba(0,0,0,0.5)] z-50"
+            >
+              <div className="flex flex-col h-full">
+                {/* Header with close button */}
+                <div className="flex items-center justify-between p-4 border-b border-gold/10">
+                  <span className="text-lg font-medium text-gold">منو</span>
+                  <button
                     onClick={() => setMobileMenuOpen(false)}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
+                    className="p-1.5 rounded-full bg-black/40 border border-gold/20"
                   >
-                    {link.name}
-                  </motion.a>
-                ))}
-                <motion.div 
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navLinks.length * 0.1 }}
-                  className="pt-2 pb-3"
-                >
-                  <button className="w-full py-2.5 rounded-full border border-gold/30 text-gold hover:border-gold/70 transition-all duration-300 bg-black/30">
-                    درخواست مشاوره
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gold">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                   </button>
-                </motion.div>
+                </div>
+                
+                {/* Navigation links */}
+                <div className="flex-1 overflow-y-auto py-4">
+                  <div className="px-4 space-y-1">
+                    {navLinks.map((link, i) => (
+                      <motion.div
+                        key={link.name}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05, duration: 0.3 }}
+                      >
+                        <a
+                          href={link.href}
+                          className={`block py-2.5 px-3 rounded-lg transition-all duration-200 ${
+                            activeSection === link.section 
+                              ? 'bg-gold/10 text-gold' 
+                              : 'text-gray-300 hover:bg-black/40 hover:text-gold'
+                          }`}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {link.name}
+                        </a>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Theme toggle */}
+                <div className="p-4 border-t border-gold/10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-400">تغییر تم</span>
+                    <button 
+                      onClick={toggleTheme}
+                      className="flex items-center space-x-2 rtl:space-x-reverse"
+                    >
+                      <span className="text-xs text-gold">{darkTheme ? 'روشن' : 'تیره'}</span>
+                      <div className="w-8 h-4 bg-black/50 rounded-full border border-gold/20 relative">
+                        <div 
+                          className={`absolute top-0.5 w-3 h-3 rounded-full bg-gold transition-all duration-300 ${
+                            darkTheme ? 'right-0.5' : 'right-[calc(100%-0.875rem)]'
+                          }`}
+                        />
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>
