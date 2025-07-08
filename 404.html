@@ -1,28 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <script>
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    // This script takes the current URL and converts the path to a 
-    // correctly formatted GitHub Pages URL
-    
-    var pathSegmentsToKeep = 1;
-
-    var l = window.location;
-    l.replace(
-      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash
-    );
-  </script>
-</head>
-<body>
-  Redirecting to the homepage...
-</body>
-</html> 
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/Vakilim/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="وکیلیم - سامانه مشاوره حقوقی آنلاین با وکلای خبره" />
+    <title>وکیلیم | مشاوره حقوقی آنلاین</title>
+    <!-- Vazir Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <!-- GitHub Pages SPA fix -->
+    <script>
+      (function() {
+        // Retrieve route from query params
+        const searchParams = new URLSearchParams(window.location.search);
+        const redirectRoute = searchParams.get("currentRoute");
+        
+        // Only if a route is specified and we need to redirect
+        if (redirectRoute) {
+          // Replace the current URL with the intended route
+          history.replaceState(null, null, `/${redirectRoute}`);
+        }
+      })();
+    </script>
+    <style>
+      html, body {
+        direction: rtl;
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: #121212;
+        color: #F5F5F5;
+        scroll-behavior: smooth;
+      }
+      .container-custom {
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      @media (min-width: 640px) {
+        .container-custom {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container-custom {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/Vakilim/assets/main-CykNOIOQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/Vakilim/assets/main-4_4lqMDB.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
