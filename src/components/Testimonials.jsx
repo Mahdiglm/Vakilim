@@ -120,7 +120,7 @@ const Testimonials = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <p className="text-gray-400 text-lg">
+            <p className="text-lg" style={{ color: currentTheme.textMuted }}>
               با وکیلیم، همیشه حق با شماست
             </p>
           </motion.div>
@@ -174,7 +174,7 @@ const Testimonials = () => {
                   
                   {/* Testimonial quote */}
                   <blockquote className="flex-1">
-                    <p className="text-gray-400 leading-relaxed mb-6">
+                    <p className="leading-relaxed mb-6" style={{ color: currentTheme.textSecondary }}>
                       {testimonial.quote}
                     </p>
                   </blockquote>
@@ -194,8 +194,8 @@ const Testimonials = () => {
                       />
                     </div>
                     <div>
-                      <p className="font-medium text-white">{testimonial.name}</p>
-                      <p style={{ color: currentTheme.primary }} className="text-sm">{testimonial.role}</p>
+                      <p className="font-medium" style={{ color: currentTheme.textPrimary }}>{testimonial.name}</p>
+                      <p style={{ color: currentTheme.textAccent }} className="text-sm">{testimonial.role}</p>
                     </div>
                   </div>
                   

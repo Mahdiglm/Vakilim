@@ -65,11 +65,28 @@ const Navbar = ({ activeSection = 'hero' }) => {
           className="relative"
         >
           <span 
-            className="text-2xl font-bold text-transparent bg-clip-text"
-            style={{ backgroundImage: currentTheme.gradient }}
+            className="text-2xl font-bold text-transparent bg-clip-text relative z-10"
+            style={{ 
+              backgroundImage: currentTheme.badgeGradient,
+              textShadow: `0 2px 10px ${currentTheme.primary}40`,
+              letterSpacing: '0.5px'
+            }}
           >
             وکیلیم
           </span>
+          <motion.span 
+            className="absolute -inset-1 rounded-lg blur-sm opacity-30 bg-gradient-to-r"
+            style={{ 
+              backgroundImage: currentTheme.badgeGradient,
+              filter: `blur(8px)`
+            }}
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
           {scrolled && (
             <motion.span 
               initial={{ width: 0 }} 

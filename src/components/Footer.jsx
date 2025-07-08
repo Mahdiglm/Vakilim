@@ -132,10 +132,10 @@ const Footer = () => {
               <div className="flex items-center mb-4">
                 <span 
                   className="text-2xl font-bold text-transparent bg-clip-text"
-                  style={{ backgroundImage: currentTheme.gradient }}
+                  style={{ backgroundImage: currentTheme.badgeGradient }}
                 >وکیلیم</span>
               </div>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p className="mb-6 leading-relaxed" style={{ color: currentTheme.textSecondary }}>
                 وکیلیم مجموعه‌ای از وکلا و مشاوران حقوقی برجسته است که با استفاده از فناوری‌های نوین، خدمات حقوقی را به شیوه‌ای جدید ارائه می‌دهد.
               </p>
               <div className="flex space-x-4 rtl:space-x-reverse">
@@ -159,7 +159,7 @@ const Footer = () => {
             {/* Footer link columns */}
             {footerLinks.map((column) => (
               <motion.div key={column.title} variants={itemVariants} className="flex flex-col">
-                <h3 className="text-white font-semibold mb-4 relative inline-block">
+                <h3 className="font-semibold mb-4 relative inline-block" style={{ color: currentTheme.textPrimary }}>
                   {column.title}
                   <span 
                     className="absolute -bottom-1 right-0 w-12 h-px" 
@@ -173,9 +173,10 @@ const Footer = () => {
                     <li key={link.name}>
                       <a 
                         href={link.href} 
-                        className="text-gray-400 hover:text-theme transition-colors duration-300 text-sm" 
+                        className="transition-colors duration-300 text-sm" 
                         style={{ 
-                          ':hover': { color: currentTheme.primary } 
+                          color: currentTheme.textMuted,
+                          ':hover': { color: currentTheme.textAccent } 
                         }}
                       >
                         {link.name}
@@ -229,7 +230,8 @@ const Footer = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-gray-500 text-sm text-center md:text-start"
+            className="text-sm text-center md:text-start"
+            style={{ color: currentTheme.textMuted }}
           >
             <p>© {new Date().getFullYear()} وکیلیم. تمامی حقوق محفوظ است.</p>
           </motion.div>

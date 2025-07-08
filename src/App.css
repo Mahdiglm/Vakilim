@@ -2,11 +2,21 @@
 
 :root {
   /* These will be dynamically set by ThemeContext */
-  --gold: var(--primary, #D4AF37);
-  --black: var(--secondary, #000000);
-  --dark-black: var(--surface-dark, #080808);
-  --light-black: var(--surface-light, #161616);
-  --gold-light: var(--muted, rgba(212, 175, 55, 0.2));
+  --primary: #D4AF37;
+  --secondary: #000000;
+  --gradient: linear-gradient(45deg, #D4AF37, #FFE062, #D4AF37);
+  --accent: #FFD700;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-muted: #9E9E9E;
+  --text-accent: #FFE699;
+  --muted: rgba(212, 175, 55, 0.2);
+  --border: rgba(212, 175, 55, 0.3);
+  --shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+  --hover-glow: 0 0 15px rgba(212, 175, 55, 0.5);
+  --surface-dark: #0A0A0A;
+  --surface-light: #1A1A1A;
+  --badge-gradient: linear-gradient(to right, #D4AF37, #FFE999, #D4AF37);
 }
 
 html {
@@ -17,7 +27,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--secondary);
-  color: white;
+  color: var(--text-primary);
   overflow-x: hidden;
   font-family: 'Vazirmatn', sans-serif;
 }
@@ -30,13 +40,30 @@ body {
   padding: 0 1.5rem;
 }
 
-/* Utility classes */
-.bg-gold {
-  background-color: var(--primary);
+/* Text color utility classes */
+.text-primary {
+  color: var(--text-primary);
 }
 
-.text-gold {
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-accent {
+  color: var(--text-accent);
+}
+
+.text-theme {
   color: var(--primary);
+}
+
+/* Utility classes */
+.bg-theme {
+  background-color: var(--primary);
 }
 
 /* Smooth transitions */
@@ -104,14 +131,23 @@ section {
   transform: translateY(0);
 }
 
-/* Gold text gradient */
-.gold-gradient-text {
+/* Theme text gradient */
+.gradient-text {
   background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
+}
+
+/* Badge gradient text */
+.badge-text {
+  background: var(--badge-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
 }
 
 /* Enhance images */
@@ -121,12 +157,12 @@ img {
 }
 
 /* Button hover effects */
-.btn-gold {
+.btn-theme {
   position: relative;
   overflow: hidden;
 }
 
-.btn-gold::after {
+.btn-theme::after {
   content: '';
   position: absolute;
   top: 0;
@@ -138,7 +174,7 @@ img {
   transition: opacity 0.3s ease;
 }
 
-.btn-gold:hover::after {
+.btn-theme:hover::after {
   opacity: 1;
 }
 
@@ -177,6 +213,13 @@ img {
 
 .theme-gradient-text {
   background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.badge-gradient-text {
+  background: var(--badge-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

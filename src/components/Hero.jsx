@@ -48,11 +48,31 @@ const Hero = () => {
           >
             <div className="inline-block relative">
               <h1 
-                className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text"
-                style={{ backgroundImage: currentTheme.gradient }}
+                className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text relative z-10"
+                style={{ 
+                  backgroundImage: currentTheme.badgeGradient,
+                  textShadow: `0 2px 15px ${currentTheme.primary}33`,
+                  letterSpacing: '1px'
+                }}
               >
                 وکیلیم
               </h1>
+              <motion.div 
+                className="absolute -inset-4 rounded-2xl opacity-40"
+                style={{ 
+                  background: `radial-gradient(circle, ${currentTheme.primary}30 30%, transparent 70%)`,
+                  filter: `blur(15px)`
+                }}
+                animate={{ 
+                  opacity: [0.3, 0.5, 0.3],
+                  scale: [0.95, 1.05, 0.95]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
               <div 
                 className="absolute -bottom-1 left-0 right-0 h-px opacity-70"
                 style={{ 
@@ -66,7 +86,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl md:text-2xl mb-10 text-gray-300 font-light"
+            className="text-xl md:text-2xl mb-10 font-light"
+            style={{ color: currentTheme.textSecondary }}
           >
             با وکیلیم همیشه حق با شماست
           </motion.p>
@@ -88,7 +109,7 @@ const Hero = () => {
                 backgroundColor: `${currentTheme.secondary}4D`,
                 borderWidth: '1px',
                 borderColor: `${currentTheme.primary}4D`,
-                color: currentTheme.primary
+                color: currentTheme.textAccent
               }}
             >
               درخواست مشاوره

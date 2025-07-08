@@ -4,11 +4,13 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import './App.css';
 
-function App() {
+// Separate component to use the theme context
+const AppContent = () => {
   const [activeSection, setActiveSection] = useState('hero');
+  const { currentTheme } = useTheme();
 
   // Set smooth scroll behavior and handle section transitions
   useEffect(() => {
@@ -71,16 +73,29 @@ function App() {
   }, []);
 
   return (
+    <div 
+      className="min-h-screen font-vazirmatn" 
+      dir="rtl"
+      style={{ 
+        backgroundColor: currentTheme.secondary,
+        color: currentTheme.textPrimary
+      }}
+    >
+      <Navbar activeSection={activeSection} />
+      <main>
+        <Hero />
+        <Features />
+        <Testimonials />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+function App() {
+  return (
     <ThemeProvider>
-      <div className="min-h-screen bg-black text-white font-vazirmatn" dir="rtl">
-        <Navbar activeSection={activeSection} />
-        <main>
-          <Hero />
-          <Features />
-          <Testimonials />
-        </main>
-        <Footer />
-      </div>
+      <AppContent />
     </ThemeProvider>
   );
 }

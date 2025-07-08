@@ -193,15 +193,15 @@ const Features = () => {
                   <h3 
                     className="text-xl font-bold mb-3 transition-colors duration-300" 
                     style={{ 
-                      color: 'white',
+                      color: currentTheme.textPrimary,
                       transition: 'color 0.3s ease' 
                     }}
                   >
-                    <span className="group-hover:text-theme" style={{ color: 'white', ':hover': { color: currentTheme.primary } }}>
+                    <span className="group-hover:text-theme" style={{ color: currentTheme.textPrimary, ':hover': { color: currentTheme.primary } }}>
                       {feature.title}
                     </span>
                   </h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed">
+                  <p className="mb-6 leading-relaxed" style={{ color: currentTheme.textSecondary }}>
                     {feature.description}
                   </p>
                   
