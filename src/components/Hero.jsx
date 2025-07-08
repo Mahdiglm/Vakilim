@@ -51,21 +51,22 @@ const Hero = () => {
                 className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text relative z-10"
                 style={{ 
                   backgroundImage: currentTheme.badgeGradient,
-                  textShadow: `0 2px 15px ${currentTheme.primary}33`,
+                  textShadow: `0 1px 8px ${currentTheme.primary}20`,
                   letterSpacing: '1px'
                 }}
               >
                 وکیلیم
               </h1>
               <motion.div 
-                className="absolute -inset-4 rounded-2xl opacity-40"
+                className="absolute -inset-4 rounded-2xl"
                 style={{ 
-                  background: `radial-gradient(circle, ${currentTheme.primary}30 30%, transparent 70%)`,
-                  filter: `blur(15px)`
+                  background: `radial-gradient(circle, ${currentTheme.primary}20 30%, transparent 70%)`,
+                  filter: `blur(10px)`,
+                  opacity: 0.2
                 }}
                 animate={{ 
-                  opacity: [0.3, 0.5, 0.3],
-                  scale: [0.95, 1.05, 0.95]
+                  opacity: [0.15, 0.25, 0.15],
+                  scale: [0.96, 1.03, 0.96]
                 }}
                 transition={{ 
                   duration: 4,
