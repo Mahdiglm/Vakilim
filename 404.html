@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/Vakilim/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="وکیلیم - سامانه مشاوره حقوقی آنلاین با وکلای خبره" />
     <title>وکیلیم | مشاوره حقوقی آنلاین</title>
@@ -23,7 +23,7 @@
         
         // Handle redirects from src/main.jsx
         const redirectFrom = searchParams.get("redirectFrom");
-        if (redirectFrom && redirectFrom.includes('/src/main.jsx')) {
+        if (redirectFrom && (redirectFrom.includes('/src/main.js') || redirectFrom.includes('/src/main.jsx'))) {
           console.log('Redirected from source file path');
         }
         
@@ -63,10 +63,10 @@
         }
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-CKhIlKux.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-4_4lqMDB.css">
+    <script type="module" crossorigin src="/Vakilim/assets/index-B5Qt9EMX.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/Vakilim/src/main.jsx"></script>
   </body>
 </html>
