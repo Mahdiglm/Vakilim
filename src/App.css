@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --gold: #D4AF37;
-  --black: #000000;
-  --dark-black: #080808;
-  --light-black: #161616;
-  --gold-light: rgba(212, 175, 55, 0.2);
+  /* These will be dynamically set by ThemeContext */
+  --gold: var(--primary, #D4AF37);
+  --black: var(--secondary, #000000);
+  --dark-black: var(--surface-dark, #080808);
+  --light-black: var(--surface-light, #161616);
+  --gold-light: var(--muted, rgba(212, 175, 55, 0.2));
 }
 
 html {
@@ -15,7 +16,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: var(--secondary);
   color: white;
   overflow-x: hidden;
   font-family: 'Vazirmatn', sans-serif;
@@ -31,11 +32,11 @@ body {
 
 /* Utility classes */
 .bg-gold {
-  background-color: var(--gold);
+  background-color: var(--primary);
 }
 
 .text-gold {
-  color: var(--gold);
+  color: var(--primary);
 }
 
 /* Smooth transitions */
@@ -58,12 +59,12 @@ button:focus, a:focus, input:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gold-light);
+  background: var(--muted);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--primary);
 }
 
 /* Animations */
@@ -105,7 +106,7 @@ section {
 
 /* Gold text gradient */
 .gold-gradient-text {
-  background: linear-gradient(90deg, #D4AF37, #FFE062, #D4AF37);
+  background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -139,4 +140,48 @@ img {
 
 .btn-gold:hover::after {
   opacity: 1;
+}
+
+/* Luxury theme helper classes */
+.theme-text {
+  color: var(--primary);
+}
+
+.theme-bg {
+  background-color: var(--primary);
+}
+
+.theme-border {
+  border-color: var(--border);
+}
+
+.theme-bg-surface {
+  background-color: var(--surface-light);
+}
+
+.theme-bg-dark {
+  background-color: var(--surface-dark);
+}
+
+.theme-shadow {
+  box-shadow: var(--shadow);
+}
+
+.theme-glow {
+  box-shadow: var(--hover-glow);
+}
+
+.theme-gradient-bg {
+  background: var(--gradient);
+}
+
+.theme-gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.luxury-transition {
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 } 
