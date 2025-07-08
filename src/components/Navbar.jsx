@@ -64,10 +64,7 @@ const Navbar = ({ activeSection = 'hero' }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative"
         >
-          <span 
-            className="text-2xl font-bold text-transparent bg-clip-text"
-            style={{ backgroundImage: currentTheme.gradient }}
-          >
+          <span className="text-2xl font-bold gradient-text">
             وکیلیم
           </span>
           {scrolled && (
