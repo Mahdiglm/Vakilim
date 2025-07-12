@@ -161,6 +161,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto"
+            role="region"
+            aria-label="آمار و اعداد کلیدی"
           >
             {[
               { number: '۱۰۰+', label: 'پرونده موفق' },
