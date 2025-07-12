@@ -99,11 +99,19 @@ const Features = () => {
 
   return (
     <section id="services" className="section-padding relative overflow-hidden">
-      {/* Professional gradient background */}
+      {/* Seamless background that matches Hero transition */}
       <div 
         className="absolute inset-0 z-0" 
         style={{ 
-          background: `linear-gradient(135deg, ${currentTheme.secondary} 0%, ${currentTheme.surfaceDark} 50%, ${currentTheme.surfaceLight} 100%)` 
+          background: `linear-gradient(180deg, ${currentTheme.surfaceDark} 0%, ${currentTheme.secondary} 40%, ${currentTheme.surfaceDark} 100%)` 
+        }}
+      />
+      
+      {/* Smooth transition from Hero section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-20 z-[1]"
+        style={{ 
+          background: `linear-gradient(to bottom, ${currentTheme.surfaceDark} 0%, transparent 100%)` 
         }}
       />
       
@@ -321,6 +329,14 @@ const Features = () => {
           </div>
         </motion.div>
       </div>
+      
+      {/* Smooth transition to Testimonials section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 z-[1]"
+        style={{ 
+          background: `linear-gradient(to bottom, transparent 0%, ${currentTheme.surfaceDark} 100%)` 
+        }}
+      />
     </section>
   );
 };
