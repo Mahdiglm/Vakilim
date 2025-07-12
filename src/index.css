@@ -4,18 +4,19 @@
 
 @layer base {
   :root {
-    /* Default theme colors (Classic Gold) */
-    --color-gold: 212 175 55; /* #D4AF37 */
-    --primary: #D4AF37;
-    --secondary: #000000;
-    --gradient: linear-gradient(90deg, #D4AF37, #FFE062, #D4AF37);
-    --accent: #FFD700;
-    --muted: rgba(212, 175, 55, 0.2);
-    --border: rgba(212, 175, 55, 0.3);
-    --shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
-    --hover-glow: 0 0 15px rgba(212, 175, 55, 0.5);
-    --surface-dark: #0A0A0A;
-    --surface-light: #1A1A1A;
+    /* Default theme colors (Corporate Navy) */
+    --color-primary: 30 58 138; /* #1E3A8A */
+    --primary: #1E3A8A;
+    --secondary: #0F172A;
+    --gradient: linear-gradient(135deg, #1E3A8A, #3B82F6, #1E40AF);
+    --accent: #3B82F6;
+    --muted: rgba(30, 58, 138, 0.15);
+    --border: rgba(30, 58, 138, 0.25);
+    --shadow: 0 4px 25px rgba(30, 58, 138, 0.12);
+    --hover-glow: 0 0 20px rgba(30, 58, 138, 0.4);
+    --surface-dark: #020617;
+    --surface-light: #1E293B;
+    --badge-gradient: linear-gradient(to right, #1E3A8A, #3B82F6, #1E40AF);
   }
 
   html {
@@ -24,23 +25,27 @@
   }
   
   body {
-    font-family: 'Vazirmatn', sans-serif;
-    @apply antialiased text-gray-100;
+    font-family: 'Vazirmatn', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    @apply antialiased;
+    color: #FFFFFF;
     background-color: var(--secondary);
+    line-height: 1.75;
+    letter-spacing: 0.025em;
   }
   
-  /* Enhanced scrollbar styling with theme colors */
+  /* Enhanced scrollbar styling with professional theme colors */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--surface-dark);
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--muted);
-    border-radius: 3px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -50,15 +55,17 @@
 
 @layer components {
   .container-custom {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1200px;
   }
   
-  /* Themed utility classes */
+  /* Professional themed utility classes */
   .theme-gradient-text {
     background: var(--gradient);
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
+    background-size: 200% auto;
   }
   
   .theme-border {
@@ -72,11 +79,37 @@
   .theme-glow-hover:hover {
     box-shadow: var(--hover-glow);
   }
+  
+  /* Professional button styling */
+  .btn-professional {
+    @apply font-semibold tracking-wide transition-all duration-300 ease-out;
+    border-radius: 12px;
+    letter-spacing: 0.025em;
+  }
+  
+  .btn-professional:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-glow);
+  }
+  
+  /* Professional card styling */
+  .card-professional {
+    @apply backdrop-blur-sm transition-all duration-300 ease-out;
+    background: linear-gradient(135deg, var(--surface-light), var(--surface-dark));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  
+  .card-professional:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-glow);
+    border-color: var(--primary);
+  }
 }
 
 @layer utilities {
-  .text-gold {
-    color: rgb(var(--color-gold) / 1);
+  .text-primary-theme {
+    color: rgb(var(--color-primary) / 1);
   }
   
   .text-theme {
@@ -87,8 +120,8 @@
     color: var(--muted);
   }
   
-  .bg-gold {
-    background-color: rgb(var(--color-gold) / 1);
+  .bg-primary-theme {
+    background-color: rgb(var(--color-primary) / 1);
   }
   
   .bg-theme {
@@ -107,8 +140,8 @@
     background-color: var(--surface-dark);
   }
   
-  .border-gold {
-    border-color: rgb(var(--color-gold) / 1);
+  .border-primary-theme {
+    border-color: rgb(var(--color-primary) / 1);
   }
   
   .border-theme {
@@ -118,9 +151,35 @@
   .border-theme-muted {
     border-color: var(--muted);
   }
+  
+  /* Professional spacing utilities */
+  .section-padding {
+    @apply py-20 lg:py-24;
+  }
+  
+  .content-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Professional typography utilities */
+  .text-professional {
+    line-height: 1.75;
+    letter-spacing: 0.025em;
+  }
+  
+  .text-professional-tight {
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  .text-professional-heading {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
 }
 
-/* RTL Support */
+/* Enhanced RTL Support for Professional Layout */
 [dir="rtl"] .rtl\:mr-0 {
   margin-right: 0;
 }
@@ -133,6 +192,10 @@
   margin-left: 1rem;
 }
 
+[dir="rtl"] .rtl\:ml-6 {
+  margin-left: 1.5rem;
+}
+
 [dir="rtl"] .rtl\:space-x-reverse {
   --tw-space-x-reverse: 1;
 }
@@ -140,4 +203,33 @@
 [dir="rtl"] .rtl\:group-hover\:-translate-x-1:hover {
   --tw-translate-x: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+/* Professional focus states */
+[dir="rtl"] .rtl\:focus\:ring-offset-right {
+  --tw-ring-offset-x: 2px;
+}
+
+/* Professional animation utilities */
+@keyframes professionalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-professional-fade-in {
+  animation: professionalFadeIn 0.6s ease-out;
+}
+
+.animate-professional-fade-in-delay {
+  animation: professionalFadeIn 0.6s ease-out 0.2s both;
+}
+
+.animate-professional-fade-in-delay-long {
+  animation: professionalFadeIn 0.6s ease-out 0.4s both;
 }
