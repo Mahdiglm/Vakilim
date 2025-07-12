@@ -233,3 +233,124 @@
 .animate-professional-fade-in-delay-long {
   animation: professionalFadeIn 0.6s ease-out 0.4s both;
 }
+
+/* MOBILE RESPONSIVE ENHANCEMENTS */
+@media (max-width: 768px) {
+  .container-custom {
+    @apply px-3;
+  }
+  
+  /* Mobile-friendly theme transitions */
+  .theme-gradient-text {
+    background-size: 100% auto;
+  }
+  
+  /* Mobile card optimizations */
+  .card-professional {
+    @apply backdrop-blur-sm;
+    border-radius: 12px;
+  }
+  
+  /* Mobile button optimizations */
+  .btn-professional {
+    @apply w-full text-center;
+    min-height: 44px; /* Touch-friendly height */
+  }
+}
+
+/* MOBILE MINIMAL THEME ADJUSTMENTS */
+@media (max-width: 640px) {
+  /* Theme color optimizations for mobile */
+  .theme-gradient-text {
+    background-size: 100% auto;
+    animation: none; /* Disable shimmer on mobile for performance */
+  }
+  
+  /* Mobile theme shadows - lighter for performance */
+  .theme-shadow {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .theme-glow-hover:hover {
+    box-shadow: 0 4px 15px var(--primary);
+    opacity: 0.8;
+  }
+  
+  /* Mobile scrollbar - thinner */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Mobile focus states - larger for touch */
+  button:focus, a:focus, input:focus, textarea:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  /* Mobile theme borders - subtler */
+  .theme-border {
+    border-color: var(--border);
+    border-width: 1px;
+  }
+  
+  /* Mobile spacing utilities - tighter */
+  .section-padding {
+    @apply py-8;
+  }
+  
+  .content-padding {
+    @apply px-3;
+  }
+  
+  /* Mobile typography - more readable */
+  .text-professional {
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  
+  .text-professional-tight {
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  
+  .text-professional-heading {
+    font-weight: 600; /* Slightly lighter for mobile */
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+}
+
+/* MOBILE THEME-SPECIFIC OPTIMIZATIONS */
+@media (max-width: 480px) {
+  /* Ultra minimal theme adjustments */
+  .bg-theme-surface {
+    background-color: var(--surface-dark); /* Darker for better contrast on small screens */
+  }
+  
+  .bg-theme-surface-dark {
+    background-color: var(--secondary);
+  }
+  
+  /* Ultra minimal borders */
+  .border-theme-muted {
+    border-color: transparent; /* Remove borders on very small screens */
+  }
+  
+  /* Ultra minimal shadows */
+  .theme-shadow {
+    box-shadow: none; /* Remove shadows for cleaner mobile look */
+  }
+  
+  /* Ultra minimal animations */
+  * {
+    animation-duration: 0.2s !important; /* Faster animations for mobile */
+  }
+  
+  /* Ultra minimal theme text */
+  .theme-gradient-text {
+    background: var(--primary); /* Solid color instead of gradient for performance */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
