@@ -265,11 +265,19 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Professional gradient overlay for smooth transition */}
+      {/* Professional gradient overlay for smooth transition to Features */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-32 z-[1]"
+        className="absolute bottom-0 left-0 right-0 h-40 z-[1]"
         style={{ 
-          background: `linear-gradient(to top, ${currentTheme.secondary} 0%, transparent 100%)` 
+          background: `linear-gradient(to bottom, transparent 0%, ${currentTheme.secondary} 30%, ${currentTheme.surfaceDark} 100%)` 
+        }}
+      />
+      
+      {/* Additional seamless transition layer */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-20 z-[2]"
+        style={{ 
+          background: `linear-gradient(to bottom, transparent 0%, ${currentTheme.surfaceDark} 100%)` 
         }}
       />
     </section>
