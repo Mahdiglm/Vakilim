@@ -204,14 +204,22 @@ const Features = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          role="grid"
+          aria-label="فهرست خدمات حقوقی"
         >
           {legalServices.map((service) => (
             <motion.div
               key={service.id}
               variants={cardVariants}
               className="group"
+              role="gridcell"
             >
-              <div className="card-professional p-8 h-full relative overflow-hidden">
+              <div className="card-professional p-8 h-full relative overflow-hidden" 
+                   tabIndex="0"
+                   role="article"
+                   aria-labelledby={`service-title-${service.id}`}
+                   aria-describedby={`service-desc-${service.id}`}
+              >
                 {/* Professional icon container */}
                 <div className="mb-6">
                   <div 
@@ -229,13 +237,15 @@ const Features = () => {
                 
                 {/* Professional content */}
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-theme transition-colors duration-300"
-                    style={{ color: currentTheme.textPrimary }}
+                  <h3 id={`service-title-${service.id}`} 
+                      className="text-xl font-bold mb-3 group-hover:text-theme transition-colors duration-300"
+                      style={{ color: currentTheme.textPrimary }}
                   >
                     {service.title}
                   </h3>
-                  <p className="text-professional leading-relaxed mb-4"
-                    style={{ color: currentTheme.textSecondary }}
+                  <p id={`service-desc-${service.id}`} 
+                     className="text-professional leading-relaxed mb-4"
+                     style={{ color: currentTheme.textSecondary }}
                   >
                     {service.description}
                   </p>
@@ -243,11 +253,12 @@ const Features = () => {
 
                 {/* Professional features list */}
                 <div className="mb-6">
-                  <ul className="space-y-2">
+                  <ul className="space-y-2" role="list" aria-label="ویژگی‌های خدمت">
                     {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
+                      <li key={index} className="flex items-start" role="listitem">
                         <div className="w-1.5 h-1.5 rounded-full mt-2 mr-3 rtl:mr-0 rtl:ml-3 flex-shrink-0"
                           style={{ backgroundColor: currentTheme.primary }}
+                          aria-hidden="true"
                         />
                         <span className="text-sm"
                           style={{ color: currentTheme.textMuted }}
@@ -264,9 +275,10 @@ const Features = () => {
                   <button 
                     className="inline-flex items-center text-sm font-semibold group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300" 
                     style={{ color: currentTheme.primary }}
+                    aria-label={`درخواست مشاوره برای ${service.title}`}
                   >
                     درخواست مشاوره
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2 transform rotate-180">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mr-2 rtl:mr-0 rtl:ml-2 transform rotate-180" aria-hidden="true">
                       <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
                     </svg>
                   </button>
