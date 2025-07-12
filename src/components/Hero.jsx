@@ -4,206 +4,274 @@ import { useTheme } from '../context/ThemeContext';
 const Hero = () => {
   const { currentTheme } = useTheme();
   
-  // SVG pattern with dynamic theme color
-  const patternSvg = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='${encodeURIComponent(currentTheme.primary)}' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
+  // Professional geometric pattern with dynamic theme color
+  const patternSvg = `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='${encodeURIComponent(currentTheme.primary)}' fill-opacity='0.03'%3E%3Cpath d='M20 20h20v20H20V20zm20 0h20v20H40V20zM20 40h20v20H20V40zm20 0h20v20H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
   
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-      {/* Premium gradient background */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Professional gradient background */}
       <div 
         className="absolute inset-0 z-0"
         style={{ 
-          background: `linear-gradient(to bottom right, ${currentTheme.secondary}, ${currentTheme.surfaceDark}, ${currentTheme.surfaceLight})`
+          background: `radial-gradient(ellipse at center, ${currentTheme.surfaceLight} 0%, ${currentTheme.secondary} 50%, ${currentTheme.surfaceDark} 100%)`
         }}
       >
         <div 
-          className="absolute inset-0 opacity-[0.03]" 
+          className="absolute inset-0 opacity-[0.02]" 
           style={{ 
             backgroundImage: patternSvg,
-            backgroundSize: '60px 60px',
+            backgroundSize: '80px 80px',
           }}
         />
       </div>
 
-      {/* Content */}
-      <div className="container-custom relative z-10">
+      {/* Professional content layout */}
+      <div className="container-custom relative z-10 pt-32 pb-20">
+        {/* Subtle background glow */}
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
-          transition={{ duration: 1 }}
-          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] h-[250px] rounded-[999px]"
+          transition={{ duration: 1.2 }}
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-96 rounded-full"
           style={{
-            background: `radial-gradient(circle, ${currentTheme.primary}26 0%, rgba(0,0,0,0) 70%)`,
-            filter: 'blur(40px)',
-            top: '-50px',
+            background: `radial-gradient(ellipse, ${currentTheme.primary}08 0%, transparent 70%)`,
+            filter: 'blur(60px)',
+            top: '20%',
           }}
         />
 
-        <div className="max-w-3xl mx-auto text-center relative">
+        <div className="max-w-5xl mx-auto text-center relative">
+          {/* Professional badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="mb-6"
+            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
-            <div className="inline-block relative">
-              <h1 
-                className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text relative z-10"
+            <div className="inline-flex items-center px-4 py-2 rounded-full border backdrop-blur-sm"
+              style={{ 
+                backgroundColor: `${currentTheme.primary}0A`,
+                borderColor: `${currentTheme.primary}20`,
+                color: currentTheme.textAccent
+              }}
+            >
+              <div className="w-2 h-2 rounded-full mr-3 rtl:mr-0 rtl:ml-3"
+                style={{ backgroundColor: currentTheme.primary }}
+              />
+              <span className="text-sm font-medium tracking-wide">
+                خدمات حقوقی تخصصی
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Professional main heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
+          >
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6">
+              <span 
+                className="text-transparent bg-clip-text leading-none block"
                 style={{ 
-                  backgroundImage: currentTheme.badgeGradient,
-                  textShadow: `0 1px 8px ${currentTheme.primary}20`,
-                  letterSpacing: '1px'
+                  backgroundImage: `linear-gradient(135deg, ${currentTheme.textPrimary} 0%, ${currentTheme.primary} 40%, ${currentTheme.accent} 100%)`,
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  textShadow: `0 0 40px ${currentTheme.primary}15`
                 }}
               >
                 وکیلیم
-              </h1>
-              <motion.div 
-                className="absolute -inset-4 rounded-2xl"
-                style={{ 
-                  background: `radial-gradient(circle, ${currentTheme.primary}20 30%, transparent 70%)`,
-                  filter: `blur(10px)`,
-                  opacity: 0.2
-                }}
-                animate={{ 
-                  opacity: [0.15, 0.25, 0.15],
-                  scale: [0.96, 1.03, 0.96]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <div 
-                className="absolute -bottom-1 left-0 right-0 h-px opacity-70"
-                style={{ 
-                  backgroundImage: `linear-gradient(to right, transparent, ${currentTheme.primary}, transparent)`
-                }}
-              ></div>
-            </div>
+              </span>
+            </h1>
+            <div className="h-1 w-24 mx-auto rounded-full"
+              style={{ 
+                background: `linear-gradient(to right, ${currentTheme.primary}, ${currentTheme.accent})`,
+                boxShadow: `0 0 20px ${currentTheme.primary}40`
+              }}
+            />
           </motion.div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl md:text-2xl mb-10 font-light"
-            style={{ color: currentTheme.textSecondary }}
-          >
-            با وکیلیم همیشه حق با شماست
-          </motion.p>
-          
+
+          {/* Professional tagline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="inline-block"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-8"
+          >
+            <p className="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed mb-4"
+              style={{ color: currentTheme.textSecondary }}
+            >
+              متخصص در ارائه خدمات حقوقی
+            </p>
+            <p className="text-lg md:text-xl font-normal leading-relaxed max-w-3xl mx-auto"
+              style={{ color: currentTheme.textMuted }}
+            >
+              با تیم مجرب وکلا و مشاوران حقوقی، حقوق شما را با دقت و تخصص دفاع می‌کنیم
+            </p>
+          </motion.div>
+
+          {/* Professional call-to-action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
             <motion.button 
               whileHover={{ 
                 scale: 1.02,
+                y: -2,
                 boxShadow: currentTheme.hoverGlow
               }}
               whileTap={{ scale: 0.98 }}
-              className="px-8 py-3 rounded-full backdrop-blur-sm font-medium transition-all duration-300"
+              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border"
               style={{ 
-                backgroundColor: `${currentTheme.secondary}4D`,
-                borderWidth: '1px',
-                borderColor: `${currentTheme.primary}4D`,
-                color: currentTheme.textAccent
+                background: `linear-gradient(135deg, ${currentTheme.primary}, ${currentTheme.accent})`,
+                color: currentTheme.textPrimary,
+                borderColor: 'transparent',
+                boxShadow: currentTheme.shadow
               }}
             >
-              درخواست مشاوره
+              مشاوره رایگان
             </motion.button>
+            
+            <motion.button 
+              whileHover={{ 
+                scale: 1.02,
+                y: -2,
+                borderColor: currentTheme.primary
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border"
+              style={{ 
+                backgroundColor: 'transparent',
+                color: currentTheme.textSecondary,
+                borderColor: `${currentTheme.primary}40`
+              }}
+            >
+              مشاهده خدمات
+            </motion.button>
+          </motion.div>
+
+          {/* Professional stats or features */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
+          >
+            {[
+              { number: '۱۰۰+', label: 'پرونده موفق' },
+              { number: '۱۵+', label: 'سال تجربه' },
+              { number: '۹۸٪', label: 'رضایت مشتری' }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-3xl md:text-4xl font-bold mb-2"
+                  style={{ color: currentTheme.primary }}
+                >
+                  {stat.number}
+                </div>
+                <div className="text-sm font-medium"
+                  style={{ color: currentTheme.textMuted }}
+                >
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
         
-        {/* Floating decorative elements */}
+        {/* Professional decorative elements */}
         <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            className="absolute w-32 h-32 rounded-full border opacity-10"
+            style={{ 
+              borderColor: currentTheme.primary,
+              left: '5%', 
+              top: '15%' 
+            }}
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          
+          <motion.div 
+            className="absolute w-24 h-24 rounded-full border opacity-10"
+            style={{ 
+              borderColor: currentTheme.accent,
+              right: '10%', 
+              top: '25%' 
+            }}
+            animate={{ 
+              scale: [1, 1.2, 1],
+              rotate: [360, 180, 0]
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          
           <motion.div 
             className="absolute w-16 h-16 rounded-full"
             style={{ 
-              backgroundColor: `${currentTheme.primary}0D`, 
-              left: '10%', 
-              top: '20%' 
+              backgroundColor: `${currentTheme.primary}08`,
+              left: '15%', 
+              bottom: '20%' 
             }}
             animate={{ 
-              y: [0, -15, 0],
-              opacity: [0.5, 0.8, 0.5]
+              y: [0, -20, 0],
+              opacity: [0.3, 0.6, 0.3]
             }}
             transition={{
-              duration: 4,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           
           <motion.div 
-            className="absolute w-8 h-8 rounded-full"
-            style={{ 
-              backgroundColor: `${currentTheme.primary}1A`, 
-              right: '15%', 
-              top: '30%' 
-            }}
-            animate={{ 
-              y: [0, -20, 0],
-              opacity: [0.6, 0.9, 0.6]
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          
-          <motion.div 
             className="absolute w-12 h-12 rounded-full"
             style={{ 
-              backgroundColor: `${currentTheme.primary}1A`, 
-              left: '20%', 
-              bottom: '15%' 
+              backgroundColor: `${currentTheme.accent}08`,
+              right: '20%', 
+              bottom: '30%' 
             }}
             animate={{ 
-              y: [0, -10, 0],
-              opacity: [0.4, 0.7, 0.4]
+              y: [0, -15, 0],
+              opacity: [0.2, 0.5, 0.2]
             }}
             transition={{
-              duration: 6,
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 2
             }}
           />
-          
-          <motion.div 
-            className="absolute w-6 h-6 rounded-full"
-            style={{ 
-              backgroundColor: `${currentTheme.primary}0D`, 
-              right: '25%', 
-              bottom: '25%' 
-            }}
-            animate={{ 
-              y: [0, -15, 0],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
+      {/* Professional gradient overlay for smooth transition */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-24 z-[1]"
+        className="absolute bottom-0 left-0 right-0 h-32 z-[1]"
         style={{ 
-          backgroundImage: `linear-gradient(to top, ${currentTheme.secondary}, transparent)` 
+          background: `linear-gradient(to top, ${currentTheme.secondary} 0%, transparent 100%)` 
         }}
-      ></div>
+      />
     </section>
   );
 };
