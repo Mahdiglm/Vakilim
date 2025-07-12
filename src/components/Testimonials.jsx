@@ -195,14 +195,22 @@ const Testimonials = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+          role="grid"
+          aria-label="نظرات موکلین"
         >
           {clientTestimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               variants={cardVariants}
               className="group"
+              role="gridcell"
             >
-              <div className="card-professional p-8 h-full relative overflow-hidden">
+              <div className="card-professional p-8 h-full relative overflow-hidden" 
+                   tabIndex="0"
+                   role="article"
+                   aria-labelledby={`testimonial-name-${testimonial.id}`}
+                   aria-describedby={`testimonial-quote-${testimonial.id}`}
+              >
                 {/* Professional quote icon */}
                 <div className="mb-6">
                   <svg 
@@ -230,8 +238,9 @@ const Testimonials = () => {
 
                 {/* Professional testimonial content */}
                 <blockquote className="mb-6">
-                  <p className="text-professional leading-relaxed"
-                    style={{ color: currentTheme.textSecondary }}
+                  <p id={`testimonial-quote-${testimonial.id}`} 
+                     className="text-professional leading-relaxed"
+                     style={{ color: currentTheme.textSecondary }}
                   >
                     "{testimonial.quote}"
                   </p>
@@ -239,7 +248,7 @@ const Testimonials = () => {
 
                 {/* Professional rating */}
                 <div className="mb-6">
-                  <div className="flex items-center">
+                  <div className="flex items-center" role="img" aria-label={`امتیاز ${testimonial.rating} از 5 ستاره`}>
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg
                         key={i}
@@ -247,6 +256,7 @@ const Testimonials = () => {
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         style={{ color: currentTheme.primary }}
+                        aria-hidden="true"
                       >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
@@ -259,17 +269,19 @@ const Testimonials = () => {
                   <div className="relative w-12 h-12 mr-4 rtl:mr-0 rtl:ml-4">
                     <img 
                       src={testimonial.image} 
-                      alt={testimonial.name}
+                      alt={`تصویر ${testimonial.name}`}
                       className="w-12 h-12 rounded-full object-cover border-2"
                       style={{ 
                         borderColor: `${currentTheme.primary}30`,
                         filter: 'grayscale(20%)'
                       }}
+                      loading="lazy"
                     />
                   </div>
                   <div>
-                    <p className="font-semibold text-professional-heading"
-                      style={{ color: currentTheme.textPrimary }}
+                    <p id={`testimonial-name-${testimonial.id}`} 
+                       className="font-semibold text-professional-heading"
+                       style={{ color: currentTheme.textPrimary }}
                     >
                       {testimonial.name}
                     </p>
