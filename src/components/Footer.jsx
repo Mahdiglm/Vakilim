@@ -105,6 +105,14 @@ const Footer = () => {
       id="contact"
       style={{ backgroundColor: currentTheme.secondary }}
     >
+      {/* Smooth transition from Testimonials section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-20 z-[1]"
+        style={{ 
+          background: `linear-gradient(to bottom, ${currentTheme.secondary} 0%, transparent 100%)` 
+        }}
+      />
+      
       {/* Professional background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div 
