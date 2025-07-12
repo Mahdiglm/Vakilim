@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme, luxuryThemes } from '../context/ThemeContext';
+import { useTheme, legalThemes } from '../context/ThemeContext';
 
 const Navbar = ({ activeSection = 'hero' }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -183,7 +183,7 @@ const Navbar = ({ activeSection = 'hero' }) => {
                   boxShadow: currentTheme.shadow
                 }}
               >
-                {luxuryThemes.map((theme, idx) => (
+                {legalThemes.map((theme, idx) => (
                   <div
                     key={theme.name}
                     className="px-3 py-2 flex items-center justify-between cursor-pointer transition-colors"
