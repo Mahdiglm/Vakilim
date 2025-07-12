@@ -4,19 +4,19 @@
 
 @layer base {
   :root {
-    /* Default theme colors (Midnight Justice) */
-    --color-primary: 30 64 175; /* #1E40AF */
-    --primary: #1E40AF;
-    --secondary: #0F1419;
-    --gradient: linear-gradient(135deg, #1E40AF, #3B82F6, #1D4ED8);
-    --accent: #60A5FA;
-    --muted: rgba(30, 64, 175, 0.12);
-    --border: rgba(30, 64, 175, 0.20);
-    --shadow: 0 4px 25px rgba(30, 64, 175, 0.15);
-    --hover-glow: 0 0 25px rgba(30, 64, 175, 0.4);
-    --surface-dark: #0A0E1A;
+    /* Default theme colors (Corporate Navy) */
+    --color-primary: 30 58 138; /* #1E3A8A */
+    --primary: #1E3A8A;
+    --secondary: #0F172A;
+    --gradient: linear-gradient(135deg, #1E3A8A, #3B82F6, #1E40AF);
+    --accent: #3B82F6;
+    --muted: rgba(30, 58, 138, 0.15);
+    --border: rgba(30, 58, 138, 0.25);
+    --shadow: 0 4px 25px rgba(30, 58, 138, 0.12);
+    --hover-glow: 0 0 20px rgba(30, 58, 138, 0.4);
+    --surface-dark: #020617;
     --surface-light: #1E293B;
-    --badge-gradient: linear-gradient(to right, #1E40AF, #3B82F6, #1D4ED8);
+    --badge-gradient: linear-gradient(to right, #1E3A8A, #3B82F6, #1E40AF);
   }
 
   html {
@@ -29,14 +29,13 @@
     @apply antialiased;
     color: #FFFFFF;
     background-color: var(--secondary);
-    line-height: 1.6;
+    line-height: 1.75;
     letter-spacing: 0.025em;
-    font-size: 14px; /* Mobile-first base size */
   }
   
   /* Enhanced scrollbar styling with professional theme colors */
   ::-webkit-scrollbar {
-    width: 4px; /* Minimal on mobile */
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
@@ -45,7 +44,8 @@
 
   ::-webkit-scrollbar-thumb {
     background: var(--muted);
-    border-radius: 2px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -55,9 +55,8 @@
 
 @layer components {
   .container-custom {
-    @apply w-full mx-auto;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
     max-width: 1200px;
-    padding: 0 1rem; /* Mobile-first minimal padding */
   }
   
   /* Professional themed utility classes */
@@ -81,38 +80,30 @@
     box-shadow: var(--hover-glow);
   }
   
-  /* Professional button styling - mobile first */
+  /* Professional button styling */
   .btn-professional {
     @apply font-semibold tracking-wide transition-all duration-300 ease-out;
-    border-radius: 8px;
+    border-radius: 12px;
     letter-spacing: 0.025em;
-    font-size: 0.875rem; /* Mobile first */
-    padding: 0.75rem 1.5rem; /* Mobile first */
   }
   
   .btn-professional:hover {
-    transform: translateY(-1px); /* Minimal for mobile */
+    transform: translateY(-2px);
     box-shadow: var(--hover-glow);
   }
   
-  /* Professional card styling - mobile first */
+  /* Professional card styling */
   .card-professional {
     @apply backdrop-blur-sm transition-all duration-300 ease-out;
     background: linear-gradient(135deg, var(--surface-light), var(--surface-dark));
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem; /* Mobile first */
+    border-radius: 20px;
   }
   
   .card-professional:hover {
-    transform: translateY(-2px); /* Minimal for mobile */
+    transform: translateY(-5px);
     box-shadow: var(--hover-glow);
     border-color: var(--primary);
-  }
-  
-  /* Mobile-first section padding */
-  .section-padding {
-    @apply py-8; /* Mobile first */
   }
 }
 
@@ -161,16 +152,19 @@
     border-color: var(--muted);
   }
   
-  /* Mobile-first spacing utilities */
-  .content-padding {
-    @apply px-4; /* Mobile first */
+  /* Professional spacing utilities */
+  .section-padding {
+    @apply py-20 lg:py-24;
   }
   
-  /* Mobile-first typography utilities */
+  .content-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Professional typography utilities */
   .text-professional {
-    line-height: 1.6;
+    line-height: 1.75;
     letter-spacing: 0.025em;
-    font-size: 0.875rem; /* Mobile first */
   }
   
   .text-professional-tight {
@@ -182,25 +176,6 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.025em;
-  }
-  
-  /* Mobile-first responsive text sizes */
-  .text-hero {
-    font-size: 2rem; /* Mobile first */
-    line-height: 1.1;
-    font-weight: 800;
-  }
-  
-  .text-section-title {
-    font-size: 1.5rem; /* Mobile first */
-    line-height: 1.2;
-    font-weight: 700;
-  }
-  
-  .text-card-title {
-    font-size: 1.125rem; /* Mobile first */
-    line-height: 1.3;
-    font-weight: 600;
   }
 }
 
@@ -239,7 +214,7 @@
 @keyframes professionalFadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px); /* Reduced for mobile */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -257,114 +232,4 @@
 
 .animate-professional-fade-in-delay-long {
   animation: professionalFadeIn 0.6s ease-out 0.4s both;
-}
-
-/* Responsive breakpoints */
-@media (min-width: 640px) {
-  body {
-    font-size: 16px;
-  }
-  
-  .container-custom {
-    padding: 0 1.5rem;
-  }
-  
-  .btn-professional {
-    font-size: 1rem;
-    padding: 0.875rem 2rem;
-  }
-  
-  .card-professional {
-    padding: 1.5rem;
-  }
-  
-  .section-padding {
-    @apply py-12;
-  }
-  
-  .content-padding {
-    @apply px-6;
-  }
-  
-  .text-professional {
-    font-size: 1rem;
-  }
-  
-  .text-hero {
-    font-size: 2.5rem;
-  }
-  
-  .text-section-title {
-    font-size: 2rem;
-  }
-  
-  .text-card-title {
-    font-size: 1.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .container-custom {
-    padding: 0 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .btn-professional {
-    padding: 1rem 2.5rem;
-  }
-  
-  .card-professional {
-    padding: 2rem;
-  }
-  
-  .section-padding {
-    @apply py-20;
-  }
-  
-  .content-padding {
-    @apply px-8;
-  }
-  
-  .text-professional {
-    font-size: 1.125rem;
-  }
-  
-  .text-hero {
-    font-size: 3rem;
-  }
-  
-  .text-section-title {
-    font-size: 2.5rem;
-  }
-  
-  .text-card-title {
-    font-size: 1.5rem;
-  }
-  
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .btn-professional:hover {
-    transform: translateY(-2px);
-  }
-  
-  .card-professional:hover {
-    transform: translateY(-5px);
-  }
-}
-
-@media (min-width: 1280px) {
-  .card-professional {
-    padding: 2.5rem;
-  }
-  
-  .text-hero {
-    font-size: 4rem;
-  }
-  
-  .text-section-title {
-    font-size: 3rem;
-  }
 }
