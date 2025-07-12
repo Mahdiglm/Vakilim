@@ -217,31 +217,34 @@ const Navbar = ({ activeSection = 'hero' }) => {
         <div className="md:hidden ml-4 rtl:ml-0 rtl:mr-4">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="transition-colors"
-            style={{ color: currentTheme.primary }}
+            className="p-2 rounded-lg transition-all duration-300"
+            style={{ 
+              color: currentTheme.primary,
+              backgroundColor: `${currentTheme.primary}10`
+            }}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
-            <div className="w-6 h-6 flex flex-col justify-center items-center relative">
+            <div className="w-5 h-5 flex flex-col justify-center items-center relative">
               <span 
-                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                className="w-4 h-0.5 absolute transform transition-all duration-300 ease-in-out"
                 style={{ 
                   backgroundColor: currentTheme.primary,
-                  transform: mobileMenuOpen ? 'rotate(45deg)' : 'translateY(-6px)'
+                  transform: mobileMenuOpen ? 'rotate(45deg)' : 'translateY(-4px)'
                 }}
               />
               <span 
-                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                className="w-4 h-0.5 absolute transform transition-all duration-300 ease-in-out"
                 style={{ 
                   backgroundColor: currentTheme.primary,
                   opacity: mobileMenuOpen ? 0 : 1
                 }}
               />
               <span 
-                className="w-5 h-0.5 absolute transform transition-all duration-300 ease-in-out"
+                className="w-4 h-0.5 absolute transform transition-all duration-300 ease-in-out"
                 style={{ 
                   backgroundColor: currentTheme.primary,
-                  transform: mobileMenuOpen ? 'rotate(-45deg)' : 'translateY(6px)'
+                  transform: mobileMenuOpen ? 'rotate(-45deg)' : 'translateY(4px)'
                 }}
               />
             </div>
