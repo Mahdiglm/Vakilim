@@ -91,11 +91,19 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="section-padding relative overflow-hidden">
-      {/* Professional gradient background */}
+      {/* Seamless background that connects Features to Footer */}
       <div 
         className="absolute inset-0 z-0" 
         style={{ 
-          background: `linear-gradient(135deg, ${currentTheme.surfaceDark} 0%, ${currentTheme.secondary} 50%, ${currentTheme.surfaceLight} 100%)` 
+          background: `linear-gradient(180deg, ${currentTheme.surfaceDark} 0%, ${currentTheme.secondary} 50%, ${currentTheme.surfaceDark} 100%)` 
+        }}
+      />
+      
+      {/* Smooth transition from Features section */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-20 z-[1]"
+        style={{ 
+          background: `linear-gradient(to bottom, ${currentTheme.surfaceDark} 0%, transparent 100%)` 
         }}
       />
       
@@ -299,10 +307,42 @@ const Testimonials = () => {
           <div className="card-professional p-8 md:p-12 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
-                { number: '۵۰۰+', label: 'موکل راضی', icon: '👥' },
-                { number: '۹۸٪', label: 'نرخ موفقیت', icon: '🏆' },
-                { number: '۱۵+', label: 'سال تجربه', icon: '⚖️' },
-                { number: '۲۴/۷', label: 'پشتیبانی', icon: '📞' }
+                { 
+                  number: '۵۰۰+', 
+                  label: 'موکل راضی', 
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                      <path fillRule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clipRule="evenodd" />
+                    </svg>
+                  )
+                },
+                { 
+                  number: '۹۸٪', 
+                  label: 'نرخ موفقیت', 
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                      <path fillRule="evenodd" d="M5.166 2.621v.858c-1.035.148-2.059.33-3.071.543a.75.75 0 00-.584.859 6.753 6.753 0 006.138 5.6 6.73 6.73 0 002.743 1.346A6.707 6.707 0 019.279 15H8.54c-1.036 0-1.875.84-1.875 1.875V19.5h-.75a2.25 2.25 0 00-2.25 2.25c0 .414.336.75.75.75h15a.75.75 0 00.75-.75 2.25 2.25 0 00-2.25-2.25H16.5v-2.625c0-1.036-.84-1.875-1.875-1.875h-.739a6.706 6.706 0 01-1.112-3.173 6.73 6.73 0 002.743-1.347 6.753 6.753 0 006.139-5.6.75.75 0 00-.585-.858 47.077 47.077 0 00-3.07-.543V2.62a.75.75 0 00-.658-.744 49.22 49.22 0 00-6.093-.377c-2.063 0-4.096.128-6.093.377a.75.75 0 00-.657.744zm0 2.629c0 1.196.312 2.32.857 3.294A5.266 5.266 0 013.16 5.337a45.6 45.6 0 012.006-.687zm13.5 0v-.687a45.6 45.6 0 012.006.687 5.266 5.266 0 01-2.863 3.207 6.72 6.72 0 00.857-3.294z" clipRule="evenodd" />
+                    </svg>
+                  )
+                },
+                { 
+                  number: '۱۵+', 
+                  label: 'سال تجربه', 
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.814 3.548 10.77 8.596 12.828a.75.75 0 00.308 0C16.202 20.52 19.75 15.564 19.75 9.75a12.74 12.74 0 00-.635-4.235.75.75 0 00-.722-.515 11.209 11.209 0 01-7.877-3.08z" clipRule="evenodd" />
+                    </svg>
+                  )
+                },
+                { 
+                  number: '۲۴/۷', 
+                  label: 'پشتیبانی', 
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                      <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd" />
+                    </svg>
+                  )
+                }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -312,7 +352,16 @@ const Testimonials = () => {
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-2xl mb-2">{stat.icon}</div>
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-xl"
+                      style={{ 
+                        backgroundColor: `${currentTheme.primary}15`,
+                        color: currentTheme.primary
+                      }}
+                    >
+                      {stat.icon}
+                    </div>
+                  </div>
                   <div className="text-3xl md:text-4xl font-bold mb-2"
                     style={{ color: currentTheme.primary }}
                   >
@@ -329,6 +378,14 @@ const Testimonials = () => {
           </div>
         </motion.div>
       </div>
+      
+      {/* Smooth transition to Footer section */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 z-[1]"
+        style={{ 
+          background: `linear-gradient(to bottom, transparent 0%, ${currentTheme.secondary} 100%)` 
+        }}
+      />
     </section>
   );
 };
