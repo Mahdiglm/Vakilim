@@ -125,7 +125,7 @@ const Hero = () => {
                 boxShadow: currentTheme.hoverGlow
               }}
               whileTap={{ scale: 0.98 }}
-              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border"
+              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border w-full sm:w-auto"
               style={{ 
                 background: `linear-gradient(135deg, ${currentTheme.primary}, ${currentTheme.accent})`,
                 color: currentTheme.textPrimary,
@@ -143,14 +143,15 @@ const Hero = () => {
                 borderColor: currentTheme.primary
               }}
               whileTap={{ scale: 0.98 }}
-              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border"
+              className="btn-professional px-8 py-4 rounded-full font-semibold text-lg backdrop-blur-sm border w-full sm:w-auto"
               style={{ 
                 backgroundColor: 'transparent',
                 color: currentTheme.textSecondary,
                 borderColor: `${currentTheme.primary}40`
               }}
             >
-              مشاهده خدمات
+              <span className="hidden sm:inline">مشاهده خدمات</span>
+              <span className="sm:hidden">۰۲۱-۱۲۳۴۵۶۷۸</span>
             </motion.button>
           </motion.div>
 
@@ -159,7 +160,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto"
           >
             {[
               { number: '۱۰۰+', label: 'پرونده موفق' },
@@ -171,14 +172,14 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
-                className="text-center"
+                className="text-center p-2 sm:p-0"
               >
-                <div className="text-3xl md:text-4xl font-bold mb-2"
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2"
                   style={{ color: currentTheme.primary }}
                 >
                   {stat.number}
                 </div>
-                <div className="text-sm font-medium"
+                <div className="text-xs sm:text-sm font-medium"
                   style={{ color: currentTheme.textMuted }}
                 >
                   {stat.label}
