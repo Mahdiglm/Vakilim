@@ -81,8 +81,13 @@ const AppContent = () => {
         color: currentTheme.textPrimary
       }}
     >
+      {/* Skip link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        انتقال به محتوای اصلی
+      </a>
+      
       <Navbar activeSection={activeSection} />
-      <main>
+      <main id="main-content" role="main">
         <Hero />
         <Features />
         <Testimonials />
