@@ -180,6 +180,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Persian to English number converter
+function persianToEnglish(str) {
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    
+    for (let i = 0; i < 10; i++) {
+        str = str.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
+    }
+    return str;
+}
+
+// English to Persian number converter
+function englishToPersian(num) {
+    const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    
+    let str = num.toString();
+    for (let i = 0; i < 10; i++) {
+        str = str.replace(new RegExp(englishNumbers[i], 'g'), persianNumbers[i]);
+    }
+    return str;
+}
+
 // Counter animation for stats
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
@@ -188,10 +211,10 @@ function animateCounter(element, target, duration = 2000) {
     function updateCounter() {
         start += increment;
         if (start < target) {
-            element.textContent = Math.floor(start) + '+';
+            element.textContent = englishToPersian(Math.floor(start)) + '+';
             requestAnimationFrame(updateCounter);
         } else {
-            element.textContent = target + '+';
+            element.textContent = englishToPersian(target) + '+';
         }
     }
     
@@ -206,8 +229,14 @@ if (aboutSection) {
             if (entry.isIntersecting) {
                 const stats = entry.target.querySelectorAll('.stat h3');
                 stats.forEach(stat => {
-                    const value = parseInt(stat.textContent);
-                    animateCounter(stat, value);
+                    // Extract the number from Persian text (remove + and convert)
+                    const persianText = stat.textContent;
+                    const englishText = persianToEnglish(persianText.replace('+', ''));
+                    const value = parseInt(englishText);
+                    
+                    if (!isNaN(value)) {
+                        animateCounter(stat, value);
+                    }
                 });
                 statsObserver.unobserve(entry.target);
             }
