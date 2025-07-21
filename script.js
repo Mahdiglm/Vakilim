@@ -382,14 +382,14 @@ document.querySelectorAll('.social-links a').forEach(link => {
     });
 });
 
-// Full-Screen Chatbot functionality
+// Hero Chatbot functionality
 const consultationBtn = document.getElementById('consultationBtn');
 const contactBtn = document.getElementById('contactBtn');
-const fullscreenChatbot = document.getElementById('fullscreenChatbot');
-const closeFullscreenChatbot = document.getElementById('closeFullscreenChatbot');
-const fullscreenChatInput = document.getElementById('fullscreenChatInput');
-const fullscreenSendMessage = document.getElementById('fullscreenSendMessage');
-const fullscreenChatbotMessages = document.getElementById('fullscreenChatbotMessages');
+const heroChatbot = document.getElementById('heroChatbot');
+const closeHeroChatbot = document.getElementById('closeHeroChatbot');
+const heroChatInput = document.getElementById('heroChatInput');
+const heroSendMessage = document.getElementById('heroSendMessage');
+const heroChatbotMessages = document.getElementById('heroChatbotMessages');
 
 // Hero elements for transition
 const heroContainer = document.getElementById('heroContainer');
@@ -419,20 +419,15 @@ const defaultResponses = [
     'برای حل این مشکل، لطفاً با دفتر ما تماس بگیرید.'
 ];
 
-// Open full-screen chatbot with hero transition
+// Open hero chatbot with transition
 consultationBtn.addEventListener('click', () => {
     // Start hero transition animations
     heroContainer.classList.add('transitioning');
     
     // Wait for hero elements to animate out
     setTimeout(() => {
-        // Hide hero container
-        heroContainer.style.opacity = '0';
-        heroContainer.style.visibility = 'hidden';
-        
-        // Show full-screen chatbot
-        fullscreenChatbot.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // Show hero chatbot
+        heroChatbot.classList.add('active');
         
         // Add entrance animation for chatbot elements
         setTimeout(() => {
@@ -445,16 +440,13 @@ consultationBtn.addEventListener('click', () => {
     }, 800); // Wait for hero transition to complete
 });
 
-// Close full-screen chatbot
-closeFullscreenChatbot.addEventListener('click', () => {
-    fullscreenChatbot.classList.remove('active');
-    document.body.style.overflow = 'auto';
+// Close hero chatbot
+closeHeroChatbot.addEventListener('click', () => {
+    heroChatbot.classList.remove('active');
     
     // Reset hero container
     setTimeout(() => {
         heroContainer.classList.remove('transitioning');
-        heroContainer.style.opacity = '1';
-        heroContainer.style.visibility = 'visible';
         
         // Reset hero animations
         heroTitle.style.animation = 'none';
@@ -478,22 +470,21 @@ closeFullscreenChatbot.addEventListener('click', () => {
 
 // Close chatbot when clicking outside (but not on interface elements)
 document.addEventListener('click', (e) => {
-    if (e.target === fullscreenChatbot && !e.target.closest('.chatbot-interface')) {
-        fullscreenChatbot.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    if (e.target === heroChatbot && !e.target.closest('.chatbot-interface')) {
+        heroChatbot.classList.remove('active');
     }
 });
 
-// Send message function for full-screen chatbot
-function sendFullscreenUserMessage(message) {
+// Send message function for hero chatbot
+function sendHeroUserMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message user-message';
     messageDiv.innerHTML = `
         <div class="message-content">${message}</div>
         <div class="message-time">الان</div>
     `;
-    fullscreenChatbotMessages.appendChild(messageDiv);
-    fullscreenChatbotMessages.scrollTop = fullscreenChatbotMessages.scrollHeight;
+    heroChatbotMessages.appendChild(messageDiv);
+    heroChatbotMessages.scrollTop = heroChatbotMessages.scrollHeight;
     
     // Simulate bot response with typing indicator
     setTimeout(() => {
@@ -504,8 +495,8 @@ function sendFullscreenUserMessage(message) {
             <div class="message-content">${botResponse}</div>
             <div class="message-time">الان</div>
         `;
-        fullscreenChatbotMessages.appendChild(botMessageDiv);
-        fullscreenChatbotMessages.scrollTop = fullscreenChatbotMessages.scrollHeight;
+        heroChatbotMessages.appendChild(botMessageDiv);
+        heroChatbotMessages.scrollTop = heroChatbotMessages.scrollHeight;
     }, 1000);
 }
 
@@ -523,22 +514,22 @@ function getBotResponse(userMessage) {
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }
 
-// Send message on button click for full-screen chatbot
-fullscreenSendMessage.addEventListener('click', () => {
-    const message = fullscreenChatInput.value.trim();
+// Send message on button click for hero chatbot
+heroSendMessage.addEventListener('click', () => {
+    const message = heroChatInput.value.trim();
     if (message) {
-        sendFullscreenUserMessage(message);
-        fullscreenChatInput.value = '';
+        sendHeroUserMessage(message);
+        heroChatInput.value = '';
     }
 });
 
-// Send message on Enter key for full-screen chatbot
-fullscreenChatInput.addEventListener('keypress', (e) => {
+// Send message on Enter key for hero chatbot
+heroChatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        const message = fullscreenChatInput.value.trim();
+        const message = heroChatInput.value.trim();
         if (message) {
-            sendFullscreenUserMessage(message);
-            fullscreenChatInput.value = '';
+            sendHeroUserMessage(message);
+            heroChatInput.value = '';
         }
     }
 });
