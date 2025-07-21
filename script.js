@@ -31,10 +31,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(102, 126, 234, 0.95)';
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
         header.style.backdropFilter = 'blur(10px)';
     } else {
-        header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        header.style.background = '#ffffff';
         header.style.backdropFilter = 'none';
     }
 });
@@ -289,7 +289,7 @@ scrollToTopBtn.style.cssText = `
     left: 20px;
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     border: none;
     border-radius: 50%;
