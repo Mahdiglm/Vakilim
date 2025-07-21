@@ -382,14 +382,21 @@ document.querySelectorAll('.social-links a').forEach(link => {
     });
 });
 
-// Chatbot functionality
+// Full-Screen Chatbot functionality
 const consultationBtn = document.getElementById('consultationBtn');
 const contactBtn = document.getElementById('contactBtn');
-const chatbotContainer = document.getElementById('chatbotContainer');
-const closeChatbot = document.getElementById('closeChatbot');
-const chatInput = document.getElementById('chatInput');
-const sendMessage = document.getElementById('sendMessage');
-const chatbotMessages = document.getElementById('chatbotMessages');
+const fullscreenChatbot = document.getElementById('fullscreenChatbot');
+const closeFullscreenChatbot = document.getElementById('closeFullscreenChatbot');
+const fullscreenChatInput = document.getElementById('fullscreenChatInput');
+const fullscreenSendMessage = document.getElementById('fullscreenSendMessage');
+const fullscreenChatbotMessages = document.getElementById('fullscreenChatbotMessages');
+
+// Hero elements for transition
+const heroContainer = document.getElementById('heroContainer');
+const heroTitle = document.getElementById('heroTitle');
+const heroSubtitle = document.getElementById('heroSubtitle');
+const heroButtons = document.getElementById('heroButtons');
+const heroCard = document.getElementById('heroCard');
 
 // Chatbot responses
 const botResponses = {
@@ -412,27 +419,67 @@ const defaultResponses = [
     'برای حل این مشکل، لطفاً با دفتر ما تماس بگیرید.'
 ];
 
-// Open chatbot
+// Open full-screen chatbot with hero transition
 consultationBtn.addEventListener('click', () => {
-    chatbotContainer.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    // Start hero transition animations
+    heroContainer.classList.add('transitioning');
     
-    // Add entrance animation
+    // Wait for hero elements to animate out
     setTimeout(() => {
-        chatbotContainer.style.transform = 'translate(-50%, -50%) scale(1)';
-    }, 100);
+        // Hide hero container
+        heroContainer.style.opacity = '0';
+        heroContainer.style.visibility = 'hidden';
+        
+        // Show full-screen chatbot
+        fullscreenChatbot.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Add entrance animation for chatbot elements
+        setTimeout(() => {
+            const welcomeSection = document.querySelector('.chatbot-welcome');
+            if (welcomeSection) {
+                welcomeSection.style.animation = 'fadeInUp 1s ease-out 0.5s both';
+            }
+        }, 100);
+        
+    }, 800); // Wait for hero transition to complete
 });
 
-// Close chatbot
-closeChatbot.addEventListener('click', () => {
-    chatbotContainer.classList.remove('active');
+// Close full-screen chatbot
+closeFullscreenChatbot.addEventListener('click', () => {
+    fullscreenChatbot.classList.remove('active');
     document.body.style.overflow = 'auto';
+    
+    // Reset hero container
+    setTimeout(() => {
+        heroContainer.classList.remove('transitioning');
+        heroContainer.style.opacity = '1';
+        heroContainer.style.visibility = 'visible';
+        
+        // Reset hero animations
+        heroTitle.style.animation = 'none';
+        heroSubtitle.style.animation = 'none';
+        heroButtons.style.animation = 'none';
+        heroCard.style.animation = 'none';
+        
+        // Force reflow
+        heroTitle.offsetHeight;
+        heroSubtitle.offsetHeight;
+        heroButtons.offsetHeight;
+        heroCard.offsetHeight;
+        
+        // Restore original animations
+        heroTitle.style.animation = '';
+        heroSubtitle.style.animation = '';
+        heroButtons.style.animation = '';
+        heroCard.style.animation = '';
+    }, 300);
 });
 
-// Close chatbot when clicking outside
+// Close chatbot when clicking outside (but not on interface elements)
 document.addEventListener('click', (e) => {
-    if (e.target === chatbotContainer) {
-        chatbotContainer.classList.remove('active');
+    if (e.target === fullscreenChatbot && !e.target.closest('.chatbot-interface')) {
+        fullscreenChatbot.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 });
