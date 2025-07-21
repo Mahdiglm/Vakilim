@@ -630,4 +630,4 @@ enhancedStyle.textContent = `
 `;
 document.head.appendChild(enhancedStyle);
 
-console.log('وکیل بان - وب‌سایت خدمات حقوقی با قابلیت چت‌بات آماده است!'); 
+    console.log('وکیلیم - وب‌سایت خدمات حقوقی با قابلیت چت‌بات آماده است!'); 
