@@ -335,7 +335,8 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 900px;
+    width: 90%;
     margin: 0 auto;
     padding: 1.5rem;
     padding-top: 6rem; /* Account for fixed navbar */
@@ -381,15 +382,15 @@ body {
 
 .close-chatbot {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0;
+    right: 0;
     background: rgba(255,255,255,0.1);
     border: none;
     color: white;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -408,10 +409,6 @@ body {
     color: white;
     margin-bottom: 1.5rem;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.3s both;
     position: relative;
 }
@@ -1262,10 +1259,22 @@ body {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        z-index: 999;
     }
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .nav-link {
+        color: white;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link:hover {
+        color: #e74c3c;
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .hero-container {
@@ -1280,6 +1289,26 @@ body {
 
     .hero-buttons {
         justify-content: center;
+    }
+
+    .chatbot-interface {
+        width: 95%;
+        padding: 1rem;
+        padding-top: 5rem;
+    }
+
+    .chatbot-welcome h2 {
+        font-size: 1.3rem;
+    }
+
+    .chatbot-welcome p {
+        font-size: 0.9rem;
+    }
+
+    .welcome-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 
     .about-content {
@@ -1312,6 +1341,23 @@ body {
     }
 }
 
+/* Tablet Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .chatbot-interface {
+        max-width: 800px;
+        width: 85%;
+    }
+
+    .hero-container {
+        padding: 0 2rem;
+    }
+
+    .services-grid,
+    .lawyers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
@@ -1323,6 +1369,32 @@ body {
 
     .btn {
         padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .chatbot-interface {
+        width: 98%;
+        padding: 0.8rem;
+        padding-top: 4.5rem;
+    }
+
+    .chatbot-welcome h2 {
+        font-size: 1.1rem;
+    }
+
+    .chatbot-welcome p {
+        font-size: 0.8rem;
+    }
+
+    .welcome-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+
+    .close-chatbot {
+        width: 35px;
+        height: 35px;
         font-size: 0.9rem;
     }
 }
