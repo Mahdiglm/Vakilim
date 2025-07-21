@@ -44,11 +44,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">خدمات حقوقی حرفه‌ای</h1>
-                <p class="hero-subtitle">با بهترین وکلای ایران، مشکلات حقوقی خود را حل کنید</p>
-                <div class="hero-buttons">
+        <div class="hero-container" id="heroContainer">
+            <div class="hero-content" id="heroContent">
+                <h1 class="hero-title" id="heroTitle">خدمات حقوقی حرفه‌ای</h1>
+                <p class="hero-subtitle" id="heroSubtitle">با بهترین وکلای ایران، مشکلات حقوقی خود را حل کنید</p>
+                <div class="hero-buttons" id="heroButtons">
                     <button class="btn btn-primary hero-btn" id="consultationBtn">
                         <span class="btn-text">مشاوره</span>
                         <span class="btn-icon"><i class="fas fa-comments"></i></span>
@@ -59,41 +59,64 @@
                     </button>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-card">
+            <div class="hero-image" id="heroImage">
+                <div class="hero-card" id="heroCard">
                     <i class="fas fa-gavel"></i>
                     <h3>عدالت و قانون</h3>
                 </div>
             </div>
         </div>
         
-        <!-- Chatbot Section (Hidden by default) -->
-        <div class="chatbot-container" id="chatbotContainer">
-            <div class="chatbot-header">
-                <div class="chatbot-avatar">
-                    <i class="fas fa-user-tie"></i>
+        <!-- Full-Screen Chatbot Interface -->
+        <div class="fullscreen-chatbot" id="fullscreenChatbot">
+            <div class="chatbot-background">
+                <div class="floating-elements">
+                    <div class="floating-element" style="--delay: 0s">⚖️</div>
+                    <div class="floating-element" style="--delay: 1s">📜</div>
+                    <div class="floating-element" style="--delay: 2s">🏛️</div>
+                    <div class="floating-element" style="--delay: 3s">⚡</div>
+                    <div class="floating-element" style="--delay: 4s">💼</div>
+                    <div class="floating-element" style="--delay: 5s">🔍</div>
                 </div>
-                <div class="chatbot-info">
-                    <h3>مشاور حقوقی</h3>
-                    <p>آنلاین</p>
-                </div>
-                <button class="close-chatbot" id="closeChatbot">
-                    <i class="fas fa-times"></i>
-                </button>
             </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    <div class="message-content">
-                        سلام! من مشاور حقوقی شما هستم. چطور می‌تونم کمکتون کنم؟
+            
+            <div class="chatbot-interface">
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <i class="fas fa-user-tie"></i>
                     </div>
-                    <div class="message-time">الان</div>
+                    <div class="chatbot-info">
+                        <h3>مشاور حقوقی هوشمند</h3>
+                        <p>آنلاین و آماده خدمت‌رسانی</p>
+                    </div>
+                    <button class="close-chatbot" id="closeFullscreenChatbot">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" placeholder="پیام خود را بنویسید..." id="chatInput">
-                <button class="send-message" id="sendMessage">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+                
+                <div class="chatbot-welcome">
+                    <div class="welcome-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2>خوش آمدید به مشاور حقوقی هوشمند</h2>
+                    <p>من آماده‌ام تا به سوالات حقوقی شما پاسخ دهم</p>
+                </div>
+                
+                <div class="chatbot-messages" id="fullscreenChatbotMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            سلام! من مشاور حقوقی هوشمند شما هستم. چطور می‌تونم کمکتون کنم؟
+                        </div>
+                        <div class="message-time">الان</div>
+                    </div>
+                </div>
+                
+                <div class="chatbot-input">
+                    <input type="text" placeholder="سوال حقوقی خود را بپرسید..." id="fullscreenChatInput">
+                    <button class="send-message" id="fullscreenSendMessage">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
