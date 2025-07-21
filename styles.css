@@ -996,7 +996,7 @@ body {
     }
 }
 
-/* Animations */
+/* Enhanced Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1008,9 +1008,91 @@ body {
     }
 }
 
-.service-card,
-.lawyer-card {
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.service-card {
     animation: fadeInUp 0.6s ease-out;
+}
+
+.lawyer-card {
+    animation: slideInFromRight 0.6s ease-out;
+}
+
+.hero-card {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Enhanced hover effects */
+.contact-item:hover {
+    transform: translateX(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.lawyer-card:hover .lawyer-image img {
+    transform: scale(1.1);
+}
+
+.lawyer-image img {
+    transition: transform 0.3s ease;
+}
+
+/* Section transitions */
+.services, .lawyers, .about, .contact {
+    position: relative;
+}
+
+.services::before, .lawyers::before, .about::before, .contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.services:hover::before, .lawyers:hover::before, .about:hover::before, .contact:hover::before {
+    opacity: 1;
 }
 
 /* Smooth scrolling for anchor links */
