@@ -518,19 +518,49 @@ body {
 }
 
 .service-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, #2c3e50, #34495e);
-    border-radius: 8px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .service-icon i {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: white;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.service-card:hover .service-icon::before {
+    opacity: 1;
+}
+
+.service-card:hover .service-icon i {
+    transform: scale(1.2);
 }
 
 .service-card h3 {
