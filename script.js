@@ -484,18 +484,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Send message function
-function sendUserMessage(message) {
+// Send message function for full-screen chatbot
+function sendFullscreenUserMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message user-message';
     messageDiv.innerHTML = `
         <div class="message-content">${message}</div>
         <div class="message-time">الان</div>
     `;
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    fullscreenChatbotMessages.appendChild(messageDiv);
+    fullscreenChatbotMessages.scrollTop = fullscreenChatbotMessages.scrollHeight;
     
-    // Simulate bot response
+    // Simulate bot response with typing indicator
     setTimeout(() => {
         const botResponse = getBotResponse(message);
         const botMessageDiv = document.createElement('div');
@@ -504,8 +504,8 @@ function sendUserMessage(message) {
             <div class="message-content">${botResponse}</div>
             <div class="message-time">الان</div>
         `;
-        chatbotMessages.appendChild(botMessageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        fullscreenChatbotMessages.appendChild(botMessageDiv);
+        fullscreenChatbotMessages.scrollTop = fullscreenChatbotMessages.scrollHeight;
     }, 1000);
 }
 
@@ -523,22 +523,22 @@ function getBotResponse(userMessage) {
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }
 
-// Send message on button click
-sendMessage.addEventListener('click', () => {
-    const message = chatInput.value.trim();
+// Send message on button click for full-screen chatbot
+fullscreenSendMessage.addEventListener('click', () => {
+    const message = fullscreenChatInput.value.trim();
     if (message) {
-        sendUserMessage(message);
-        chatInput.value = '';
+        sendFullscreenUserMessage(message);
+        fullscreenChatInput.value = '';
     }
 });
 
-// Send message on Enter key
-chatInput.addEventListener('keypress', (e) => {
+// Send message on Enter key for full-screen chatbot
+fullscreenChatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        const message = chatInput.value.trim();
+        const message = fullscreenChatInput.value.trim();
         if (message) {
-            sendUserMessage(message);
-            chatInput.value = '';
+            sendFullscreenUserMessage(message);
+            fullscreenChatInput.value = '';
         }
     }
 });
