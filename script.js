@@ -382,4 +382,185 @@ document.querySelectorAll('.social-links a').forEach(link => {
     });
 });
 
-console.log('وکیل بان - وب‌سایت خدمات حقوقی آماده است!'); 
+// Chatbot functionality
+const consultationBtn = document.getElementById('consultationBtn');
+const contactBtn = document.getElementById('contactBtn');
+const chatbotContainer = document.getElementById('chatbotContainer');
+const closeChatbot = document.getElementById('closeChatbot');
+const chatInput = document.getElementById('chatInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatbotMessages = document.getElementById('chatbotMessages');
+
+// Chatbot responses
+const botResponses = {
+    'سلام': 'سلام! چطور می‌تونم کمکتون کنم؟',
+    'مشاوره': 'بله، من آماده ارائه مشاوره حقوقی هستم. لطفاً مشکل خود را توضیح دهید.',
+    'قیمت': 'هزینه مشاوره بسته به نوع مشکل متفاوت است. برای اطلاعات دقیق با ما تماس بگیرید.',
+    'وکیل': 'ما تیم متخصصی از وکلای مجرب داریم. می‌خواهید با کدام وکیل صحبت کنید؟',
+    'قرارداد': 'برای مشاوره در مورد قراردادها، لطفاً جزئیات بیشتری ارائه دهید.',
+    'طلاق': 'در مورد طلاق، ما می‌توانیم راهنمایی‌های لازم را ارائه دهیم.',
+    'املاک': 'برای مشاوره املاک، لطفاً نوع مشکل خود را مشخص کنید.',
+    'کیفری': 'در پرونده‌های کیفری، ما از حقوق شما دفاع می‌کنیم.',
+    'تجاری': 'برای مشاوره تجاری، لطفاً نوع کسب و کار خود را توضیح دهید.'
+};
+
+// Default responses
+const defaultResponses = [
+    'متوجه نشدم. لطفاً سوال خود را واضح‌تر مطرح کنید.',
+    'برای اطلاعات دقیق‌تر، لطفاً با مشاوران ما تماس بگیرید.',
+    'این موضوع نیاز به بررسی دقیق‌تری دارد. پیشنهاد می‌کنم با وکیل متخصص مشورت کنید.',
+    'برای حل این مشکل، لطفاً با دفتر ما تماس بگیرید.'
+];
+
+// Open chatbot
+consultationBtn.addEventListener('click', () => {
+    chatbotContainer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Add entrance animation
+    setTimeout(() => {
+        chatbotContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+});
+
+// Close chatbot
+closeChatbot.addEventListener('click', () => {
+    chatbotContainer.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+// Close chatbot when clicking outside
+document.addEventListener('click', (e) => {
+    if (e.target === chatbotContainer) {
+        chatbotContainer.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Send message function
+function sendUserMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message user-message';
+    messageDiv.innerHTML = `
+        <div class="message-content">${message}</div>
+        <div class="message-time">الان</div>
+    `;
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    
+    // Simulate bot response
+    setTimeout(() => {
+        const botResponse = getBotResponse(message);
+        const botMessageDiv = document.createElement('div');
+        botMessageDiv.className = 'message bot-message';
+        botMessageDiv.innerHTML = `
+            <div class="message-content">${botResponse}</div>
+            <div class="message-time">الان</div>
+        `;
+        chatbotMessages.appendChild(botMessageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }, 1000);
+}
+
+// Get bot response
+function getBotResponse(userMessage) {
+    const message = userMessage.toLowerCase();
+    
+    for (const [key, response] of Object.entries(botResponses)) {
+        if (message.includes(key.toLowerCase())) {
+            return response;
+        }
+    }
+    
+    // Return random default response
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+}
+
+// Send message on button click
+sendMessage.addEventListener('click', () => {
+    const message = chatInput.value.trim();
+    if (message) {
+        sendUserMessage(message);
+        chatInput.value = '';
+    }
+});
+
+// Send message on Enter key
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const message = chatInput.value.trim();
+        if (message) {
+            sendUserMessage(message);
+            chatInput.value = '';
+        }
+    }
+});
+
+// Contact button functionality (placeholder)
+contactBtn.addEventListener('click', () => {
+    // Scroll to contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+// Enhanced button click effects
+document.querySelectorAll('.hero-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        // Create enhanced ripple effect
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: enhancedRipple 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        `;
+        
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 800);
+    });
+});
+
+// Add enhanced ripple animation
+const enhancedStyle = document.createElement('style');
+enhancedStyle.textContent = `
+    @keyframes enhancedRipple {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(enhancedStyle);
+
+console.log('وکیل بان - وب‌سایت خدمات حقوقی با قابلیت چت‌بات آماده است!'); 
